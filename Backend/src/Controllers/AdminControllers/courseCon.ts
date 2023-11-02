@@ -75,86 +75,42 @@ class CourseController {
     };
 
     // Update a course by ID
-
-    // static async updateCourse(req: Request, res: Response) {
-    //     try {
-    //         const courseId = req.params.id;
-    //         const { image, title, description } = req.body; // Extract image, title, and description from the request body
-
-    //         if (req.file) {
-    //             const newImage = req.file.filename; // Get the uploaded image filename
-
-    //             // Create an object with the updated values including the new image
-    //             const updatedCourse = {
-    //                 image: newImage,
-    //                 title,
-    //                 description,
-    //             };
-
-    //             const course = await Course.findByIdAndUpdate(courseId, updatedCourse, { new: true });
-
-    //             if (!course) {
-    //                 return res.status(404).json({ error: 'Course not found.' });
-    //             }
-
-    //             res.json(course);
-    //         } else {
-    //             // If no file is uploaded, just update title and description
-    //             const updatedCourse = {
-    //                 title,
-    //                 description,
-    //             };
-
-    //             const course = await Course.findByIdAndUpdate(courseId, updatedCourse, { new: true });
-
-    //             if (!course) {
-    //                 return res.status(404).json({ error: 'Course not found.' });
-    //             }
-
-    //             res.json(course);
-    //         }
-    //     } catch (error) {
-    //         res.status(500).json({ error: 'Could not update the course.' });
-    //     }
-    // };
-
-    // static async updateCourse(req: Request, res: Response) {
-    //     try {
-    //         const courseId = req.params.id;
-    //         const updatedCourse = req.body;
-    //         const course = await Course.findByIdAndUpdate(courseId, updatedCourse, { new: true });
-    //         if (!course) {
-    //             return res.status(404).json({ error: 'Course not found.' });
-    //         }
-    //         res.json(course);
-    //     } catch (error) {
-    //         res.status(500).json({ error: 'Could not update the course.' });
-    //     }
-    // };
-
-
-    //update course
     static async updateCourse(req: Request, res: Response) {
         try {
-            let imagePath = '';
-            if (req.file !== undefined) {
-                const result = await cloudinary.uploader.upload(req.file.path);
-                fs.unlinkSync(req.file.path);
-                imagePath = result.secure_url;
-            }
-            const courseId = req.params.id;
-            const updatedCourse = req.body;
-            updatedCourse['image'] = imagePath;
-            console.log('updatedCourse', updatedCourse);
-            const course = await Course.findByIdAndUpdate(courseId, updatedCourse, { new: true });
+          let courseId = req.params.id;
+          console.log("courseID", courseId);
+      
+          if (req.file) {
+            // The image file will be available in req.file
+            const updatedCourse = {
+              ...req.body,
+              img_url: req.file.filename, // Assuming you save the filename in the database
+            };
+      
+            let course = await Course.findOneAndUpdate({ _id: courseId }, updatedCourse, { new: true });
+      
             if (!course) {
-                return res.status(404).json({ error: 'Course not found' })
+              return res.status(404).send('No course found');
             }
-            res.json(course);
+      
+            res.send(updatedCourse);
+          } else {
+            let updatedCourse = { ...req.body };
+            let course = await Course.findOneAndUpdate({ _id: courseId }, updatedCourse, { new: true });
+      
+            if (!course) {
+              return res.status(404).send('No course found');
+            }
+      
+            res.send(updatedCourse);
+          }
         } catch (error) {
-            res.status(500).json({ error: "Couldn't update the course" })
+          console.error(error);
+          res.status(500).send('Internal Server Error');
         }
-    }
+      }
+    
+
 
     // Delete a course by ID
     static async deleteCourse(req: Request, res: Response) {
@@ -191,41 +147,27 @@ class CourseController {
     }
 
     // Search for courses based on a search query
-    // static async searchCourses(req: Request, res: Response) {
-    //     try {
-    //         let query = {};
-    //         if (req.query.searchQuery) {
-    //             query['name'] = { $regex: req.query.searchQuery, $options: 'i' };
-    //         } else {
-    //             query["isActive"] = true;
-    //         }
-    //         const courses = await Course.find(query);
-    //         res.json(courses);
-    //     } catch (error) {
-    //         console.log('Error in searching', error);
-    //         res.status(500).send();
-    //     }
-    // }
+    
     static async searchCourses(req: Request, res: Response) {
         try {
             const query = req.params.query;
-            
+
             // Use a regular expression to perform a case-insensitive search
             const regex = new RegExp(query, 'i');
-            
+
             const courses = await Course.find({
                 $or: [
                     { title: { $regex: regex } },
                     { description: { $regex: regex } },
                 ],
             }).populate('Admin_id');
-            
+
             res.json(courses);
         } catch (error) {
             res.status(500).json({ error: 'Could not perform the search.' });
         }
     }
-    
+
 
 
 

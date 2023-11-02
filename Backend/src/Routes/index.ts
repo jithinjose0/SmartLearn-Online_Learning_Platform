@@ -6,7 +6,7 @@ import routerAdmin from "./AdminRoutes/authAdminRou";
 
 export default class Routes {
   constructor(app: Application) {
-    app.use("/user", router);
-    app.use("/admin", routerAdmin);
+    app.use("/users", router);
+    app.use("/instructors", routerAdmin);
   }
 }

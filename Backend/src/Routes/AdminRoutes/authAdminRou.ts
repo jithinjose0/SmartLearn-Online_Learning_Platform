@@ -6,6 +6,7 @@ import authMiddleware from '../../Middleware/authMiddleware';
 import CourseController from '../../Controllers/AdminControllers/courseCon';
 import { upload } from '../../Multer/multer';
 import { Request, Response } from 'express';
+import Course from "../../Models/AdminModels/CourseModel";
 const routerAdmin = express.Router();
 
 routerAdmin.post(
@@ -17,7 +18,7 @@ routerAdmin.post(
   ],
   AdminController.registerAdmin
 );
-routerAdmin.get('/signup',authMiddleware,AdminController.getAllAdmins);
+routerAdmin.get('/',authMiddleware,AdminController.getAllAdmins);
 
 
 routerAdmin.post(
@@ -38,7 +39,7 @@ routerAdmin.get('/courses', CourseController.getAllCourses);
 routerAdmin.get('/courses/:id', CourseController.getCourseById);
 
 // Update a course by ID
-routerAdmin.put('/courses/:id', CourseController.updateCourse);
+routerAdmin.put('/courses/:id', upload.single('image'),CourseController.updateCourse);
 
 // Delete a course by ID
 routerAdmin.delete('/courses/:id', CourseController.deleteCourse);

@@ -1,4 +1,3 @@
-
 import express from 'express';
 import { body } from 'express-validator';
 import UserController from '../../Controllers/UserControllers/authController';
@@ -14,7 +13,7 @@ router.post(
   ],
   UserController.registerUser
 );
-router.get('/signup',authMiddleware,UserController.getAllUsers);
+router.get('/',UserController.getAllUsers);
 router.post(
     '/login',
     [
