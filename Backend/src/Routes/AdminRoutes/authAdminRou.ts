@@ -54,4 +54,5 @@ routerAdmin.post('/enrollments', enrollmentController.createEnrollment);
 routerAdmin.get('/getAll/enrollments', enrollmentController.getAllEnrollments);
 //write a route using getUserCoursesById
 routerAdmin.get("/enrolled_courses/:id", enrollmentController.getUserCoursesById);
+routerAdmin.get("/enrolled/by_admin_id", enrollmentController.getEnrollmentsByAdminId);
 export default routerAdmin;

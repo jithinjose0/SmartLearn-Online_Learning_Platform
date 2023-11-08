@@ -41,7 +41,8 @@ const Auth: React.FC = () => {
         // window.localStorage.setItem("token", response.data.token);
 
         console.log('Signup successful', response.data);
-        navigate("/signin");
+        // navigate("/signin");
+        window.location.reload();
       } else {
         console.error('Token not found in the response');
       }

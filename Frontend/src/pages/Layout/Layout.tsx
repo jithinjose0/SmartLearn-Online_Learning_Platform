@@ -55,6 +55,7 @@ const Layout = () => {
                         {admin ? (
                             <>
                             <a href="/dash"  className="nav-item nav-link">Dashboard</a>
+                            <a href="/students_enrolled_list"  className="nav-item nav-link">Enrolled List</a>
                             <a href="/create_course"  className="nav-item nav-link">New Course</a>
                             <a href="" onClick={handleLogoutAdmin} className="nav-item nav-link">Logout</a>
                             
