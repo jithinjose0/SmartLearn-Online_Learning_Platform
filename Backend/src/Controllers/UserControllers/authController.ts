@@ -4,18 +4,17 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../../Models/UserModels/UserModel';
 
-const JWT_SECRET = 'olleh nihtij';
+const JWT_SECRET = 'ollehnihtij';
 
 class UserController {
   static async registerUser(req: Request, res: Response) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { username, email, password } = req.body;
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
 
     try {
+      const { username, email, password } = req.body;
       let user = await User.findOne({ email });
 
       if (user) {
@@ -33,13 +32,14 @@ class UserController {
 
       await user.save();
 
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
+      // const payload = {
+      //   user:{
+      //     id: user.id,
+      //   }
+      // };
+      // res.json(user)
 
-      jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+      jwt.sign({ username: user.username }, JWT_SECRET, { expiresIn: '3000h' }, (err, token) => {
         if (err) throw err;
         res.json({ token });
       });
@@ -164,20 +164,43 @@ class UserController {
 
       // Create a JSON Web Token (JWT) for the user
       const payload = {
-        user: {
-          id: user.id,
-        },
+
+        username: user.username,
+
       };
 
-      jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+      jwt.sign(payload, JWT_SECRET, { expiresIn: '3000h' }, (err, token) => {
         if (err) throw err;
         res.json({ token });
       });
+
+
+
     } catch (error) {
       // console.error(error.message);
       res.status(500).send('Server error');
     }
   }
+
+  static async getCurrentUser(req: any, res: any) {
+    try {
+      const username = req.userData.username; // Assuming your user ID is stored in the 'id' field
+      const user = await User.findOne({ username: username });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.json({ message: 'User Profile', userData: user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error getting user' });
+    }
+  }
+
+
+
+
 }
 
 export default UserController;

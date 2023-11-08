@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from "../../context/AuthContext";
+// import { AuthService } from "../../services/AuthService";
 
 const Auth: React.FC = () => {
   const navigate = useNavigate();
@@ -37,10 +38,10 @@ const Auth: React.FC = () => {
       // navigate("/home");
       if (response.data.token) {
         // Store the token in localStorage
-        window.localStorage.setItem("token", response.data.token);
+        // window.localStorage.setItem("token", response.data.token);
 
         console.log('Signup successful', response.data);
-        navigate("/home");
+        navigate("/signin");
       } else {
         console.error('Token not found in the response');
       }
@@ -78,6 +79,8 @@ const Auth: React.FC = () => {
   // create login login using localstorage token
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  // const auth = useAuth();
+  const  { login }  = useAuth();
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -90,27 +93,35 @@ const Auth: React.FC = () => {
 
   //create a function for handle login with loginUsername and loginPassword without token
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    try {
+    // try {
+
       e.preventDefault();
-      await axios({
-        method: 'post',
-        url: 'http://localhost:8080/users/login',
-        data: { username: loginUsername, password: loginPassword }
-      })
-        .then((res) => {
-          console.log("LOGIN RESPONSE", res);
-          navigate('/home')
-        }).catch((err) => {
-          alert(`Error ${err}`);
-        })
-    } catch (error) {
-      console.log(error);
-    }
+      // if (auth) {
+        try {
+          await login(loginUsername, loginPassword);
+          console.log("successfully logedin",loginUsername);
+          // console.log(auth);
+          navigate('/')
+        } catch (error) {
+          console.log('Login failed.User Please check your credentials.');
+        }
+      // }
+
+      // await axios({
+      //   method: 'post',
+      //   url: 'http://localhost:8080/users/login',
+      //   data: { username: loginUsername, password: loginPassword }
+      // })
+      //   .then((res) => {
+      //     console.log("LOGIN RESPONSE", res);
+      //     navigate('/home')
+      //   }).catch((err) => {
+      //     alert(`Error ${err}`);
+      //   })
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
-
-
-
-
 
 
 

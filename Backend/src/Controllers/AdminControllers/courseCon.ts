@@ -25,7 +25,7 @@ class CourseController {
 
     static async createCourse(req: Request, res: Response) {
         try {
-            const { Admin_id, title, description } = req.body;
+            const { Admin_id, title, description, video_url,price  } = req.body;
 
             // Check if req.file is defined
             if (req.file) {
@@ -36,11 +36,14 @@ class CourseController {
                     title,
                     description,
                     image,
+                    video_url,
+                    price
                 });
 
                 const savedCourse = await course.save();
                 res.status(201).json(savedCourse);
             } else {
+                console.log("failed to create");
                 res.status(400).json({ error: 'No file uploaded.' });
             }
         } catch (error) {

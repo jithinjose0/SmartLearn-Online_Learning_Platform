@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../../Models/AdminModels/authAdmin';
 
-const JWT_SECRET = 'olleh nihtij';
+const JWT_SECRET = 'ollehnihtijAdmin';
 
 class AdminController {
   static async registerAdmin(req: Request, res: Response) {
@@ -79,18 +79,31 @@ class AdminController {
 
       // Create a JSON Web Token (JWT) for the user
       const payload = {
-        user: {
-          id: user.id,
-        },
+        username: user.username
       };
 
-      jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+      jwt.sign(payload, JWT_SECRET, { expiresIn: '3000h' }, (err, token) => {
         if (err) throw err;
         res.json({ token });
       });
     } catch (error) {
       // console.error(error.message);
       res.status(500).send('Server error');
+    }
+  }
+  static async getCurrentUser(req: any, res: any) {
+    try {
+      const username = req.userData.username; // Assuming your user ID is stored in the 'id' field
+      const user = await User.findOne({ username: username });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.json({ message: 'User Profile', userData: user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error getting user' });
     }
   }
 }

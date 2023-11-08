@@ -7,29 +7,17 @@ import CourseController from '../../Controllers/AdminControllers/courseCon';
 import { upload } from '../../Multer/multer';
 import { Request, Response } from 'express';
 import Course from "../../Models/AdminModels/CourseModel";
+import authAdminMiddleware from '../../Middleware/adminMiddleware';
+import { enrollmentController } from '../../Controllers/AdminControllers/EnrollmentController';
+
 const routerAdmin = express.Router();
-
-routerAdmin.post(
-  '/signup',
-  [
-    body('username', 'Username is required').not().isEmpty(),
-    body('email', 'Please include a valid email').isEmail(),
-    body('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
-  ],
-  AdminController.registerAdmin
-);
-routerAdmin.get('/',authMiddleware,AdminController.getAllAdmins);
+const path = require('path');
+routerAdmin.post('/signup',AdminController.registerAdmin);
+routerAdmin.get('/',AdminController.getAllAdmins);
 
 
-routerAdmin.post(
-    '/login',
-    [
-      body('username', 'Username is required').notEmpty(),
-      body('password', 'Password is required').notEmpty(),
-    ],
-    AdminController.loginAdmin
-  );
-
+routerAdmin.post('/login',AdminController.loginAdmin);
+routerAdmin.get('/api/profile', authAdminMiddleware, AdminController.getCurrentUser);
 //--------------------------------Courses router----------------------------------------------------------------
 routerAdmin.post('/courses', upload.single('image'), CourseController.createCourse);
 // Get all courses
@@ -47,5 +35,23 @@ routerAdmin.delete('/courses/:id', CourseController.deleteCourse);
 routerAdmin.get('/courses_by_admin/:adminId', CourseController.getCoursesByAdminID);
 
 routerAdmin.get('/courses/search/:query', CourseController.searchCourses);
+// Serve images from the 'uploads' directory
+routerAdmin.get('/api/getImage/:imageName', (req, res) => {
+  try {
+    const imageName = req.params.imageName;
+    const imagePath = path.join('D:/SmartLearn-Online_Learning_Platform/Backend/src/uploads', imageName);
+    res.sendFile(imagePath);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 //--------------------------------end courses------------------------------------------------------------------------------
+
+
+routerAdmin.post('/enrollments', enrollmentController.createEnrollment);
+// Define a route to get all enrollments
+routerAdmin.get('/getAll/enrollments', enrollmentController.getAllEnrollments);
+//write a route using getUserCoursesById
+routerAdmin.get("/enrolled_courses/:id", enrollmentController.getUserCoursesById);
 export default routerAdmin;

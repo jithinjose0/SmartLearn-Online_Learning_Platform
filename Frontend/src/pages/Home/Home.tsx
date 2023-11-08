@@ -1,2489 +1,609 @@
+import '../../assets/css/style.css';
+import React, { Component, useEffect, useRef, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// Import CSS files in your React component or a separate CSS file
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the CSS styles for the carousel
 
-const Home = () => {
+// import '../../assets/lib/animate/animate.min.css';
+// import '../../assets/lib/owlcarousel/assets/owl.carousel.min.css';
+import about from '../../assets/img/about.jpg';
+import Rcarousel1 from '../../assets/img/carousel-1.jpg';
+import carousel2 from '../../assets/img/carousel-2.jpg';
+import Rcat1 from '../../assets/img/cat-1.jpg';
+import Rcat2 from '../../assets/img/cat-2.jpg';
+import Rcat3 from '../../assets/img/cat-3.jpg';
+import Rcat4 from '../../assets/img/cat-4.jpg';
+import Course1 from '../../assets/img/course-1.jpg';
+import RCourse2 from '../../assets/img/course-2.jpg';
+import RCourse3 from '../../assets/img/course-3.jpg';
+import team1 from '../../assets/img/team-1.jpg';
+import Rteam2 from '../../assets/img/team-2.jpg';
+import Rteam3 from '../../assets/img/team-3.jpg';
+import Rteam4 from '../../assets/img/team-4.jpg';
+import Rtestimonial1 from '../../assets/img/testimonial-1.jpg';
+import testimonial2 from '../../assets/img/testimonial-2.jpg';
+import Rtestimonial3 from '../../assets/img/testimonial-3.jpg';
+import testimonial4 from '../../assets/img/testimonial-4.jpg';
+import HeaderCarousel from './Slider';
+import 'wowjs/css/libs/animate.css';
+
+// import WOW from 'react-wow';
+const WOW = require('wowjs');
+
+
+
+// Define the carousel options type
+
+const Home: React.FC = () => {
+    // spinner
+
+    useEffect(() => {
+        const hideSpinner = () => {
+            const spinner = document.getElementById('spinner');
+            if (spinner) {
+                spinner.classList.remove('show');
+            }
+        };
+
+        setTimeout(hideSpinner, 1);
+        // window.addEventListener("DOMContentLoaded", () => {
+        //     const wow = new WOW(
+        //         {
+        //             boxClass: "wow",      // default
+        //             animateClass: "animated",   // default
+        //             offset: 0,          // distance to trigger animation (default is 0)
+        //             mobile: true,       // trigger animations on mobile devices (default is true)
+        //             live: true,         // act on asynchronously loaded content (default is true)
+        //             scrollContainer: null,     // optional scroll container selector, otherwise use window
+        //             resetAnimation: false,     // reset animation on end
+
+        //         }
+        //     );
+        //     wow.init();
+        //   });
+        // window.addEventListener("scroll", function() {
+        //     new WOW().init();
+        // });        
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                const stickyTop = document.querySelector('.sticky-top') as HTMLElement;
+                if (stickyTop) {
+                    stickyTop.style.top = '0px';
+                }
+            } else {
+                const stickyTop = document.querySelector('.sticky-top') as HTMLElement;
+                if (stickyTop) {
+                    stickyTop.style.top = '-100px';
+                }
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+    }, []);
+    useEffect(() => {
+        // Initialize Wow.js when the component mounts
+        const wow = new WOW.WOW({
+            boxClass: 'wow', // CSS class that triggers the animation
+            animateClass: 'animated', // CSS class for animated elements
+            offset: 0, // How far the element is from the viewport to trigger the animation
+            mobile: true, // Enable animations on mobile devices
+            live: true, // Live mode (default is true) to reapply animations when new content is added
+        });
+        wow.init();
+    }, []); // Empty dependency array to run the effect only once when the component mounts
+
+
+
+
+    // useEffect(() => {
+    //     const options = {
+    //       autoplay: true,
+    //       smartSpeed: 1500,
+    //       items: 1,
+    //       dots: false,
+    //       loop: true,
+    //       nav: true,
+    //       navText: [
+    //         '<i className="bi bi-chevron-left"></i>',
+    //         '<i className="bi bi-chevron-right"></i>',
+    //       ],
+    //     };
+
+    //     const carouselElement = document.querySelector(".header-carousel");
+
+    //     if (carouselElement) {
+    //         // @ts-ignore
+    //         $(carouselElement).owlCarousel(options);
+    //       }
+    //   }, []);
+
     return (
         <>
-            <body className="rbt-header-sticky">
 
-                {/* <!-- Start Header Area --> */}
-                <header className="rbt-header rbt-header-10">
-                    <div className="rbt-sticky-placeholder"></div>
-                    {/* <!-- Start Header Top  --> */}
-                    <div className="rbt-header-top rbt-header-top-1 header-space-betwween bg-not-transparent bg-color-darker top-expended-activation">
-                        <div className="container-fluid">
-                            <div className="top-expended-wrapper">
-                                <div className="top-expended-inner rbt-header-sec align-items-center ">
-                                    <div className="rbt-header-sec-col rbt-header-left d-none d-xl-block">
-                                        <div className="rbt-header-content">
-                                            {/* <!-- Start Header Information List  -->2 */}
-                                            <div className="header-info">
-                                                <ul className="rbt-information-list">
-                                                    <li>
-                                                        <a href="#"><i className="fab fa-instagram"></i>100k <span className="d-none d-xxl-block">Followers</span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i className="fab fa-facebook-square"></i>500k <span className="d-none d-xxl-block">Followers</span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i className="feather-phone"></i>+1-202-555-0174</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            {/* <!-- End Header Information List  --> */}
-                                        </div>
-                                    </div>
-                                    <div className="rbt-header-sec-col rbt-header-center">
-                                        <div className="rbt-header-content justify-content-start justify-content-xl-center">
-                                            <div className="header-info">
-                                                <div className="rbt-header-top-news">
-                                                    <div className="inner">
-                                                        <div className="content">
-                                                            <span className="rbt-badge variation-02 bg-color-primary color-white radius-round">Hot</span>
-                                                            <span className="news-text"><img src="fonts/hand-emojji.svg" alt="Hand Emojji Images" /> Intro price. Get Histudy for Big Sale -95% off.</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="rbt-header-sec-col rbt-header-right mt_md--10 mt_sm--10">
-                                        <div className="rbt-header-content justify-content-start justify-content-lg-end">
-                                            <div className="header-info d-none d-xl-block">
-                                                <ul className="social-share-transparent">
-                                                    <li>
-                                                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i className="fab fa-twitter"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i className="fab fa-instagram"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div className="rbt-separator d-none d-xl-block"></div>
-
-                                            <div className="header-info">
-                                                <ul className="rbt-dropdown-menu switcher-language">
-                                                    <li className="has-child-menu">
-                                                        <a href="#">
-                                                            <img className="left-image" src="images/en-us.png" alt="Language Images" />
-                                                            <span className="menu-item">English</span>
-                                                            <i className="right-icon feather-chevron-down"></i>
-                                                        </a>
-                                                        <ul className="sub-menu">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img className="left-image" src="images/fr.png" alt="Language Images" />
-                                                                    <span className="menu-item">Français</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img className="left-image" src="images/de.png" alt="Language Images" />
-                                                                    <span className="menu-item">Deutsch</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div className="header-info">
-                                                <ul className="rbt-dropdown-menu currency-menu">
-                                                    <li className="has-child-menu">
-                                                        <a href="#">
-                                                            <span className="menu-item">USD</span>
-                                                            <i className="right-icon feather-chevron-down"></i>
-                                                        </a>
-                                                        <ul className="sub-menu hover-reverse">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span className="menu-item">EUR</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <span className="menu-item">GBP</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="header-info">
-                                    <div className="top-bar-expended d-block d-lg-none">
-                                        <button className="topbar-expend-button rbt-round-btn"><i className="feather-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* <!-- End Header Top  --> */}
-                    <div className="rbt-header-wrapper header-space-betwween header-sticky">
-                        <div className="container-fluid">
-                            <div className="mainbar-row rbt-navigation-center align-items-center">
-                                <div className="header-left rbt-header-content">
-                                    <div className="header-info">
-                                        <div className="logo">
-                                            <a href="index.html">
-                                                <img src="images/logo.png" alt="Education Logo Images" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="header-info">
-                                        <div className="rbt-category-menu-wrapper">
-                                            <div className="rbt-category-btn rbt-side-offcanvas-activation">
-                                                <div className="rbt-offcanvas-trigger md-size icon">
-                                                    <span className="d-none d-xl-block">
-                                                        <i className="feather-grid"></i>
-                                                    </span>
-                                                    <i title="Category" className="feather-grid d-block d-xl-none"></i>
-                                                </div>
-                                                <span className="category-text d-none d-xl-block">Category</span>
-                                            </div>
-
-                                            <div className="category-dropdown-menu d-none d-xl-block">
-                                                <div className="category-menu-item">
-                                                    <div className="rbt-vertical-nav">
-                                                        <ul className="rbt-vertical-nav-list-wrapper vertical-nav-menu">
-                                                            <li className="vertical-nav-item active">
-                                                                <a href="#tab1">Course School</a>
-                                                            </li>
-                                                            <li className="vertical-nav-item">
-                                                                <a href="#tab2">Online School</a>
-                                                            </li>
-                                                            <li className="vertical-nav-item">
-                                                                <a href="#tab3">kindergarten</a>
-                                                            </li>
-                                                            <li className="vertical-nav-item">
-                                                                <a href="#tab4">classNameic LMS</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="rbt-vertical-nav-content">
-                                                        {/* <!-- Start One Item  --> */}
-                                                        <div className="rbt-vertical-inner tab-content" id="tab1" style={{ display: "block" }}>
-                                                            <div className="rbt-vertical-single">
-                                                                <div className="row">
-                                                                    <div className="col-lg-6 col-sm-6 col-6">
-                                                                        <div className="vartical-nav-content-menu">
-                                                                            <h3 className="rbt-short-title">Course Title</h3>
-                                                                            <ul className="rbt-vertical-nav-list-wrapper">
-                                                                                <li><a href="#">Web Design</a></li>
-                                                                                <li><a href="#">Art</a></li>
-                                                                                <li><a href="#">Figma</a></li>
-                                                                                <li><a href="#">Adobe</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-lg-6 col-sm-6 col-6">
-                                                                        <div className="vartical-nav-content-menu">
-                                                                            <h3 className="rbt-short-title">Course Title</h3>
-                                                                            <ul className="rbt-vertical-nav-list-wrapper">
-                                                                                <li><a href="#">Photo</a></li>
-                                                                                <li><a href="#">English</a></li>
-                                                                                <li><a href="#">Math</a></li>
-                                                                                <li><a href="#">Read</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        {/* <!-- End One Item  --> */}
-
-                                                        {/* <!-- Start One Item  --> */}
-                                                        <div className="rbt-vertical-inner tab-content" id="tab2">
-                                                            <div className="rbt-vertical-single">
-                                                                <div className="row">
-                                                                    <div className="col-lg-6">
-                                                                        <div className="vartical-nav-content-menu">
-                                                                            <h3 className="rbt-short-title">Course Title</h3>
-                                                                            <ul className="rbt-vertical-nav-list-wrapper">
-                                                                                <li><a href="#">Photo</a></li>
-                                                                                <li><a href="#">English</a></li>
-                                                                                <li><a href="#">Math</a></li>
-                                                                                <li><a href="#">Read</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-lg-6">
-                                                                        <div className="vartical-nav-content-menu">
-                                                                            <h3 className="rbt-short-title">Course Title</h3>
-                                                                            <ul className="rbt-vertical-nav-list-wrapper">
-                                                                                <li><a href="#">Web Design</a></li>
-                                                                                <li><a href="#">Art</a></li>
-                                                                                <li><a href="#">Figma</a></li>
-                                                                                <li><a href="#">Adobe</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        {/* <!-- End One Item  --> */}
-
-                                                        {/* <!-- Start One Item  --> */}
-                                                        <div className="rbt-vertical-inner tab-content" id="tab3">
-                                                            <div className="rbt-vertical-single">
-                                                                <div className="row">
-                                                                    <div className="col-lg-12">
-                                                                        <div className="vartical-nav-content-menu">
-                                                                            <h3 className="rbt-short-title">Course Title</h3>
-                                                                            <ul className="rbt-vertical-nav-list-wrapper">
-                                                                                <li><a href="#">Photo</a></li>
-                                                                                <li><a href="#">English</a></li>
-                                                                                <li><a href="#">Math</a></li>
-                                                                            </ul>
-                                                                            <div className="read-more-btn">
-                                                                                <a className="rbt-btn-link" href="#">Learn More<i className="feather-arrow-right"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        {/* <!-- End One Item  --> */}
-
-                                                        {/* <!-- Start One Item  --> */}
-                                                        <div className="rbt-vertical-inner tab-content" id="tab4">
-                                                            <div className="rbt-vertical-single">
-                                                                <div className="row">
-                                                                    <div className="col-lg-12">
-                                                                        <div className="vartical-nav-content-menu">
-                                                                            <h3 className="rbt-short-title">Course Title</h3>
-                                                                            <ul className="rbt-vertical-nav-list-wrapper">
-                                                                                <li><a href="#">Photo</a></li>
-                                                                                <li><a href="#">English</a></li>
-                                                                                <li><a href="#">Math</a></li>
-                                                                                <li><a href="#">Read</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        {/* <!-- End One Item  --> */}
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="rbt-main-navigation d-none d-xl-block">
-                                    <nav className="mainmenu-nav">
-                                        <ul className="mainmenu">
-                                            <li className="with-megamenu has-menu-child-item position-static">
-                                                <a href="#">Home <i className="feather-chevron-down"></i></a>
-                                                {/* <!-- Start Mega Menu  --/> */}
-                                                <div className="rbt-megamenu menu-skin-dark">
-                                                    <div className="wrapper">
-                                                        <div className="row row--15 home-plesentation-wrapper single-dropdown-menu-presentation">
-
-                                                            {/*   */}
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="01-main-demo.html"><img src="images/h1.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="01-main-demo.html">Home Demo <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/*   */}
-
-                                                            {/*   */}
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="12-marketplace.html"><img src="images/h12.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="12-marketplace.html">Marketplace <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/*   */}
-                                                            {/*   */}
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="04-kindergarten.html"><img src="images/h4.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="04-kindergarten.html">kindergarten <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/*   */}
-                                                            {/*   */}
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="13-university-classNameic.html"><img src="images/h13.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="13-university-classNameic.html">University classNameic <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/*  / */}
-
-                                                            {/*   */}
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="14-home-elegant.html"><img src="images/h14.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="14-home-elegant.html">Home Elegant <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/*   */}
-
-                                                            {/*   */}
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="09-gym-coaching.html"><img src="images/h9.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="09-gym-coaching.html">Gym Coaching <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {/*   */}
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="03-online-school.html"><img src="images/h3.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="03-online-school.html">Online School <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="06-university-status.html"><img src="images/h6.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="06-university-status.html">University Status <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="15-home-technology.html"><img src="images/h15.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="15-home-technology.html">Home Technology <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="07-instructor-portfolio.html"><img src="images/h7.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="07-instructor-portfolio.html">Instructor Portfolio <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="08-language-academy.html"><img src="images/h8.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="08-language-academy.html">Language Academy <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="11-single-course.html"><img src="images/h11.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="11-single-course.html">Single Course <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="10-online-course.html"><img src="images/h10.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="10-online-course.html">Online Course <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="05-classNameic-lms.html"><img src="images/h5.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="05-classNameic-lms.html">classNameic Lms <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="02-course-school.html"><img src="images/h2.jpg" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="02-course-school.html">Course School <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item coming-soon">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="#"><img src="images/coming-soon-1.png" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="#">Coming Soon <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item coming-soon">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="#"><img src="images/coming-soon-2.png" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="#">Coming Soon 2 <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                            <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item coming-soon">
-                                                                <div className="demo-single">
-                                                                    <div className="inner">
-                                                                        <div className="thumbnail">
-                                                                            <a href="#"><img src="images/coming-soon-3.png" alt="Demo Images" /></a>
-                                                                        </div>
-                                                                        <div className="content">
-                                                                            <h4 className="title"><a href="#">Coming Soon 3 <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div className="load-demo-btn text-center">
-                                                            <a className="rbt-btn-link color-white" href="#">Scroll to view more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
-                                                            </svg></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-
-                                            <li className="with-megamenu has-menu-child-item">
-                                                <a href="#">Courses <i className="feather-chevron-down"></i></a>
-
-                                                <div className="rbt-megamenu grid-item-2">
-                                                    <div className="wrapper">
-                                                        <div className="row">
-                                                            <div className="col-lg-12">
-                                                                <div className="mega-top-banner">
-                                                                    <div className="content">
-                                                                        <h4 className="title">Developer hub</h4>
-                                                                        <p className="description">Start building fast, with code samples, key resources and more.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="row row--15">
-                                                            <div className="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                                                <h3 className="rbt-short-title">Course Layout</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="course-filter-one-toggle.html">Filter One Toggle</a></li>
-                                                                    <li><a href="course-filter-one-open.html">Filter One Open</a></li>
-                                                                    <li><a href="course-filter-two-toggle.html">Filter Two Toggle</a></li>
-                                                                    <li><a href="course-filter-two-open.html">Filter Two Open</a></li>
-                                                                    <li><a href="course-with-tab.html">Course With Tab</a></li>
-                                                                    <li><a href="course-with-tab-two.html">Course With Tab Two</a></li>
-                                                                    <li><a href="course-card-2.html">Course Card Two</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div className="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                                                <h3 className="rbt-short-title">Course Layout</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="course-card-3.html">Course Card Three</a></li>
-                                                                    <li><a href="course-masonry.html">Course Masonry</a></li>
-                                                                    <li><a href="course-with-sidebar.html">Course With Sidebar</a></li>
-                                                                    <li><a href="course-details.html">Course Details</a></li>
-                                                                    <li><a href="course-details-2.html">Course Details Two</a></li>
-                                                                    <li><a href="lesson.html">Course Lesson <span className="rbt-badge-card">New</span></a></li>
-                                                                    <li><a href="create-course.html">Create Course <span className="rbt-badge-card">New</span></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="col-lg-12">
-                                                                <ul className="nav-quick-access">
-                                                                    <li><a href="#"><i className="feather-folder-minus"></i> Quick Start Guide</a></li>
-                                                                    <li><a href="#"><i className="feather-folder-minus"></i> For Open Source</a></li>
-                                                                    <li><a href="#"><i className="feather-folder-minus"></i> API Status</a></li>
-                                                                    <li><a href="#"><i className="feather-folder-minus"></i> Support</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-
-                                            <li className="has-dropdown has-menu-child-item">
-                                                <a href="#">Dashboard
-                                                    <i className="feather-chevron-down"></i>
-                                                </a>
-                                                <ul className="submenu">
-                                                    <li className="has-dropdown"><a href="#">Instructor Dashboard</a>
-                                                        <ul className="submenu">
-                                                            <li><a href="instructor-dashboard.html">Dashboard</a></li>
-                                                            <li><a href="instructor-profile.html">Profile</a></li>
-                                                            <li><a href="instructor-enrolled-courses.html">Enrolled Courses</a></li>
-                                                            <li><a href="instructor-wishlist.html">Wishlist</a></li>
-                                                            <li><a href="instructor-reviews.html">Reviews</a></li>
-                                                            <li><a href="instructor-my-quiz-attempts.html">My Quiz Attempts</a></li>
-                                                            <li><a href="instructor-order-history.html">Order History</a></li>
-                                                            <li><a href="instructor-course.html">My Course</a></li>
-                                                            <li><a href="instructor-announcements.html">Announcements</a></li>
-                                                            <li><a href="instructor-quiz-attempts.html">Quiz Attempts</a></li>
-                                                            <li><a href="instructor-assignments.html">Assignments</a></li>
-                                                            <li><a href="instructor-settings.html">Settings</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className="has-dropdown"><a href="#">Student Dashboard</a>
-                                                        <ul className="submenu">
-                                                            <li><a href="student-dashboard.html">Dashboard</a></li>
-                                                            <li><a href="student-profile.html">Profile</a></li>
-                                                            <li><a href="student-enrolled-courses.html">Enrolled Courses</a></li>
-                                                            <li><a href="student-wishlist.html">Wishlist</a></li>
-                                                            <li><a href="student-reviews.html">Reviews</a></li>
-                                                            <li><a href="student-my-quiz-attempts.html">My Quiz Attempts</a></li>
-                                                            <li><a href="student-order-history.html">Order History</a></li>
-                                                            <li><a href="student-settings.html">Settings</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li className="with-megamenu has-menu-child-item position-static">
-                                                <a href="#">Pages <i className="feather-chevron-down"></i></a>
-
-                                                <div className="rbt-megamenu grid-item-4">
-                                                    <div className="wrapper">
-                                                        <div className="row row--15">
-                                                            <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                                <h3 className="rbt-short-title">Get Started</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="about-us-01.html">About Us</a></li>
-                                                                    <li><a href="about-us-02.html">About Us 02</a></li>
-                                                                    <li><a href="event-grid.html">Event Grid</a></li>
-                                                                    <li><a href="event-list.html">Event List</a></li>
-                                                                    <li><a href="event-sidebar.html">Event Sidebar</a></li>
-                                                                    <li><a href="event-details.html">Event Details</a></li>
-                                                                    <li><a href="academy-gallery.html">Academy Gallery</a></li>
-                                                                    <li><a href="admission-guide.html">Admission Guide</a></li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                                <h3 className="rbt-short-title">Get Started</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="profile.html">Profile</a></li>
-                                                                    <li><a href="contact.html">Contact Us</a></li>
-                                                                    <li><a href="become-a-teacher.html">Become a Teacher</a></li>
-                                                                    <li><a href="instructor.html">Instructor</a></li>
-                                                                    <li><a href="faqs.html">FAQS</a></li>
-                                                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                                    <li><a href="404.html">404 Page</a></li>
-                                                                    <li><a href="maintenance.html">Maintenance</a></li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                                <h3 className="rbt-short-title">Shop Pages</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="shop.html">Shop <span className="rbt-badge-card">Sale Anything</span></a></li>
-                                                                    <li><a href="single-product.html">Single Product</a></li>
-                                                                    <li><a href="cart.html">Cart Page</a></li>
-                                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                                    <li><a href="wishlist.html">Wishlist Page</a></li>
-                                                                    <li><a href="my-account.html">My Acount</a></li>
-                                                                    <li><a href="login.html">Login & Register</a></li>
-                                                                    <li><a href="subscription.html">Subscription</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                                <div className="mega-category-item">
-
-                                                                    <div className="nav-category-item">
-                                                                        <div className="thumbnail">
-                                                                            <div className="image"><img src="images/category-2.png" alt="Course images" /></div>
-                                                                            <a href="course-filter-one-toggle.html">
-                                                                                <span>Online Education</span>
-                                                                                <i className="feather-chevron-right"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-
-
-
-                                                                    <div className="nav-category-item">
-                                                                        <div className="thumbnail">
-                                                                            <div className="image"><img src="images/category-1.png" alt="Course images" /></div>
-                                                                            <a href="course-filter-one-toggle.html">
-                                                                                <span>Language Club</span>
-                                                                                <i className="feather-chevron-right"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-
-
-
-                                                                    <div className="nav-category-item">
-                                                                        <div className="thumbnail">
-                                                                            <div className="image"><img src="images/category-4.png" alt="Course images" /></div>
-                                                                            <a href="course-filter-one-toggle.html">
-                                                                                <span>University Status</span>
-                                                                                <i className="feather-chevron-right"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-
-
-
-                                                                    <div className="nav-category-item">
-                                                                        <div className="thumbnail">
-                                                                            <a href="course-filter-one-toggle.html">
-                                                                                <span>Course School</span>
-                                                                                <i className="feather-chevron-right"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-
-
-
-                                                                    <div className="nav-category-item">
-                                                                        <div className="thumbnail">
-                                                                            <div className="image"><img src="images/category-9.png" alt="Course images" /></div>
-                                                                            <a href="course-filter-one-toggle.html">
-                                                                                <span>Academy</span>
-                                                                                <i className="feather-chevron-right"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-
-                                            <li className="with-megamenu has-menu-child-item position-static">
-                                                <a href="#">Elements <i className="feather-chevron-down"></i></a>
-
-                                                <div className="rbt-megamenu grid-item-3">
-                                                    <div className="wrapper">
-                                                        <div className="row row--15 single-dropdown-menu-presentation">
-                                                            <div className="col-lg-4 col-xxl-4 single-mega-item">
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="style-guide.html">Style Guide <span className="rbt-badge-card">Hot</span></a></li>
-                                                                    <li><a href="accordion.html">Accordion</a></li>
-                                                                    <li><a href="advancetab.html">Advance Tab</a></li>
-                                                                    <li><a href="brand.html">Brand</a></li>
-                                                                    <li><a href="button.html">Button</a></li>
-                                                                    <li><a href="badge.html">Badge</a></li>
-                                                                    <li><a href="card.html">Card</a></li>
-                                                                    <li><a href="call-to-action.html">Call To Action</a></li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <div className="col-lg-4 col-xxl-4 single-mega-item">
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="counterup.html">Counter</a></li>
-                                                                    <li><a href="category.html">Categories</a></li>
-                                                                    <li><a href="header.html">Header Style</a></li>
-                                                                    <li><a href="newsletter.html">Newsletter</a></li>
-                                                                    <li><a href="team.html">Team</a></li>
-                                                                    <li><a href="social.html">Social</a></li>
-                                                                    <li><a href="list-style.html">List Style</a></li>
-                                                                    <li><a href="gallery.html">Gallery</a></li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <div className="col-lg-4 col-xxl-4 single-mega-item">
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="pricing.html">Pricing</a></li>
-                                                                    <li><a href="progressbar.html">Progressbar</a></li>
-                                                                    <li><a href="testimonial.html">Testimonial</a></li>
-                                                                    <li><a href="service.html">Service</a></li>
-                                                                    <li><a href="split.html">Split Area</a></li>
-                                                                    <li><a href="search.html">Search Style</a></li>
-                                                                    <li><a href="instagram.html">Instagram Style</a></li>
-                                                                    <li><a href="#">& More Coming</a></li>
-
-                                                                </ul>
-                                                            </div>
-
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="col-lg-12">
-                                                                <div className="btn-wrapper">
-                                                                    <a className="rbt-btn btn-gradient hover-icon-reverse square btn-xl w-100 text-center mt--30 hover-transform-none" href="#">
-                                                                        <span className="icon-reverse-wrapper">
-                                                                            <span className="btn-text">Visit Histudy Template</span>
-                                                                            <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                                                            <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                                                        </span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-
-                                            <li className="with-megamenu has-menu-child-item position-static">
-                                                <a href="#">Blog <i className="feather-chevron-down"></i></a>
-
-                                                <div className="rbt-megamenu grid-item-3">
-                                                    <div className="wrapper">
-                                                        <div className="row row--15">
-                                                            <div className="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                                                <h3 className="rbt-short-title">Blog Styles</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="blog-list.html">Blog List</a></li>
-                                                                    <li><a href="blog.html">Blog Grid</a></li>
-                                                                    <li><a href="blog-grid-minimal.html">Blog Grid Minimal</a></li>
-                                                                    <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                                    <li><a href="post-format-standard.html">Post Format Standard</a></li>
-                                                                    <li><a href="post-format-gallery.html">Post Format Gallery</a></li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <div className="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                                                <h3 className="rbt-short-title">Get Started</h3>
-                                                                <ul className="mega-menu-item">
-                                                                    <li><a href="post-format-quote.html">Post Format Quote</a></li>
-                                                                    <li><a href="post-format-audio.html">Post Format Audio</a></li>
-                                                                    <li><a href="post-format-video.html">Post Format Video</a></li>
-                                                                    <li><a href="#">Media Under Title <span className="rbt-badge-card">Coming</span></a></li>
-                                                                    <li><a href="#">Sticky Sidebar <span className="rbt-badge-card">Coming</span></a></li>
-                                                                    <li><a href="#">Auto Masonry <span className="rbt-badge-card">Coming</span></a></li>
-                                                                    <li><a href="#">Meta Overlaid <span className="rbt-badge-card">Coming</span></a></li>
-                                                                </ul>
-                                                            </div>
-
-                                                            <div className="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                                                <div className="rbt-ads-wrapper">
-                                                                    <a className="d-block" href="#"><img src="images/mobile-cat.jpg" alt="Education Images" /></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                                <div className="header-right">
-
-
-                                    <ul className="quick-access">
-                                        <li className="access-icon">
-                                            <a className="search-trigger-active rbt-round-btn" href="#">
-                                                <i className="feather-search"></i>
-                                            </a>
-                                        </li>
-
-                                        <li className="access-icon rbt-mini-cart">
-                                            <a className="rbt-cart-sidenav-activation rbt-round-btn" href="#">
-                                                <i className="feather-shopping-cart"></i>
-                                                <span className="rbt-cart-count">4</span>
-                                            </a>
-                                        </li>
-
-                                        <li className="account-access rbt-user-wrapper d-none d-xl-block">
-                                            <a href="#"><i className="feather-user"></i>Admin</a>
-                                            <div className="rbt-user-menu-list-wrapper">
-                                                <div className="inner">
-                                                    <div className="rbt-admin-profile">
-                                                        <div className="admin-thumbnail">
-                                                            <img src="images/avatar.jpg" alt="User Images" />
-                                                        </div>
-                                                        <div className="admin-info">
-                                                            <span className="name">Nipa Bali</span>
-                                                            <a className="rbt-btn-link color-primary" href="profile.html">View Profile</a>
-                                                        </div>
-                                                    </div>
-                                                    <ul className="user-list-wrapper">
-                                                        <li>
-                                                            <a href="instructor-dashboard.html">
-                                                                <i className="feather-home"></i>
-                                                                <span>My Dashboard</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="feather-bookmark"></i>
-                                                                <span>Bookmark</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-enrolled-courses.html">
-                                                                <i className="feather-shopping-bag"></i>
-                                                                <span>Enrolled Courses</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-wishlist.html">
-                                                                <i className="feather-heart"></i>
-                                                                <span>Wishlist</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-reviews.html">
-                                                                <i className="feather-star"></i>
-                                                                <span>Reviews</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-my-quiz-attempts.html">
-                                                                <i className="feather-list"></i>
-                                                                <span>My Quiz Attempts</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-order-history.html">
-                                                                <i className="feather-clock"></i>
-                                                                <span>Order History</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-quiz-attempts.html">
-                                                                <i className="feather-message-square"></i>
-                                                                <span>Question & Answer</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <hr className="mt--10 mb--10" />
-                                                    <ul className="user-list-wrapper">
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="feather-book-open"></i>
-                                                                <span>Getting Started</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <hr className="mt--10 mb--10" />
-                                                    <ul className="user-list-wrapper">
-                                                        <li>
-                                                            <a href="instructor-settings.html">
-                                                                <i className="feather-settings"></i>
-                                                                <span>Settings</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index.html">
-                                                                <i className="feather-log-out"></i>
-                                                                <span>Logout</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <li className="access-icon rbt-user-wrapper d-block d-xl-none">
-                                            <a className="rbt-round-btn" href="#"><i className="feather-user"></i></a>
-                                            <div className="rbt-user-menu-list-wrapper">
-                                                <div className="inner">
-                                                    <div className="rbt-admin-profile">
-                                                        <div className="admin-thumbnail">
-                                                            <img src="images/avatar.jpg" alt="User Images" />
-                                                        </div>
-                                                        <div className="admin-info">
-                                                            <span className="name">Nipa Bali</span>
-                                                            <a className="rbt-btn-link color-primary" href="profile.html">View Profile</a>
-                                                        </div>
-                                                    </div>
-                                                    <ul className="user-list-wrapper">
-                                                        <li>
-                                                            <a href="instructor-dashboard.html">
-                                                                <i className="feather-home"></i>
-                                                                <span>My Dashboard</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="feather-bookmark"></i>
-                                                                <span>Bookmark</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-enrolled-courses.html">
-                                                                <i className="feather-shopping-bag"></i>
-                                                                <span>Enrolled Courses</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-wishlist.html">
-                                                                <i className="feather-heart"></i>
-                                                                <span>Wishlist</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-reviews.html">
-                                                                <i className="feather-star"></i>
-                                                                <span>Reviews</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-my-quiz-attempts.html">
-                                                                <i className="feather-list"></i>
-                                                                <span>My Quiz Attempts</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-order-history.html">
-                                                                <i className="feather-clock"></i>
-                                                                <span>Order History</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="instructor-quiz-attempts.html">
-                                                                <i className="feather-message-square"></i>
-                                                                <span>Question & Answer</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <hr className="mt--10 mb--10" />
-                                                    <ul className="user-list-wrapper">
-                                                        <li>
-                                                            <a href="#">
-                                                                <i className="feather-book-open"></i>
-                                                                <span>Getting Started</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <hr className="mt--10 mb--10" />
-                                                    <ul className="user-list-wrapper">
-                                                        <li>
-                                                            <a href="instructor-settings.html">
-                                                                <i className="feather-settings"></i>
-                                                                <span>Settings</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index.html">
-                                                                <i className="feather-log-out"></i>
-                                                                <span>Logout</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-
-                                    <div className="rbt-btn-wrapper d-none d-xl-block">
-                                        <a className="rbt-btn rbt-marquee-btn marquee-auto btn-border-gradient radius-round btn-sm hover-transform-none" href="#">
-                                            <span data-text="Enroll Now">Enroll Now</span>
-                                        </a>
-                                    </div>
-
-                                    {/* <!-- Start Mobile-Menu-Bar --> */}
-                                    <div className="mobile-menu-bar d-block d-xl-none">
-                                        <div className="hamberger">
-                                            <button className="hamberger-button rbt-round-btn">
-                                                <i className="feather-menu"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    {/* <!-- Start Mobile-Menu-Bar --> */}
-
-                                </div>
-                            </div>
-                        </div>
-                        {/* <!-- Start Search Dropdown  --> */}
-                        <div className="rbt-search-dropdown">
-                            <div className="wrapper">
-                                <div className="row">
-                                    <div className="col-lg-12">
-                                        <form action="#">
-                                            <input type="text" placeholder="What are you looking for?" />
-                                            <div className="submit-btn">
-                                                <a className="rbt-btn btn-gradient btn-md" href="#">Search</a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div className="rbt-separator-mid">
-                                    <hr className="rbt-separator m-0" />
-                                </div>
-
-                                <div className="row g-4 pt--30 pb--60">
-                                    <div className="col-lg-12">
-                                        <div className="section-title">
-                                            <h5 className="rbt-title-style-2">Our Top Course</h5>
-                                        </div>
-                                    </div>
-
-
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                        <div className="rbt-card variation-01 rbt-hover">
-                                            <div className="rbt-card-img">
-                                                <a href="course-details.html">
-                                                    <img src="images/course-online-01.jpg" alt="Card image" />
-                                                </a>
-                                            </div>
-                                            <div className="rbt-card-body">
-                                                <h5 className="rbt-card-title"><a href="course-details.html">React Js</a>
-                                                </h5>
-                                                <div className="rbt-review">
-                                                    <div className="rating">
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                    </div>
-                                                    <span className="rating-count"> (15 Reviews)</span>
-                                                </div>
-                                                <div className="rbt-card-bottom">
-                                                    <div className="rbt-price">
-                                                        <span className="current-price">$15</span>
-                                                        <span className="off-price">$25</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                        <div className="rbt-card variation-01 rbt-hover">
-                                            <div className="rbt-card-img">
-                                                <a href="course-details.html">
-                                                    <img src="images/course-online-02.jpg" alt="Card image" />
-                                                </a>
-                                            </div>
-                                            <div className="rbt-card-body">
-                                                <h5 className="rbt-card-title"><a href="course-details.html">Java Program</a>
-                                                </h5>
-                                                <div className="rbt-review">
-                                                    <div className="rating">
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                    </div>
-                                                    <span className="rating-count"> (15 Reviews)</span>
-                                                </div>
-                                                <div className="rbt-card-bottom">
-                                                    <div className="rbt-price">
-                                                        <span className="current-price">$10</span>
-                                                        <span className="off-price">$40</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                        <div className="rbt-card variation-01 rbt-hover">
-                                            <div className="rbt-card-img">
-                                                <a href="course-details.html">
-                                                    <img src="images/course-online-03.jpg" alt="Card image" />
-                                                </a>
-                                            </div>
-                                            <div className="rbt-card-body">
-                                                <h5 className="rbt-card-title"><a href="course-details.html">Web Design</a>
-                                                </h5>
-                                                <div className="rbt-review">
-                                                    <div className="rating">
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                    </div>
-                                                    <span className="rating-count"> (15 Reviews)</span>
-                                                </div>
-                                                <div className="rbt-card-bottom">
-                                                    <div className="rbt-price">
-                                                        <span className="current-price">$10</span>
-                                                        <span className="off-price">$20</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-                                        <div className="rbt-card variation-01 rbt-hover">
-                                            <div className="rbt-card-img">
-                                                <a href="course-details.html">
-                                                    <img src="images/course-online-04.jpg" alt="Card image" />
-                                                </a>
-                                            </div>
-                                            <div className="rbt-card-body">
-                                                <h5 className="rbt-card-title"><a href="course-details.html">Web Design</a>
-                                                </h5>
-                                                <div className="rbt-review">
-                                                    <div className="rating">
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                    </div>
-                                                    <span className="rating-count"> (15 Reviews)</span>
-                                                </div>
-                                                <div className="rbt-card-bottom">
-                                                    <div className="rbt-price">
-                                                        <span className="current-price">$20</span>
-                                                        <span className="off-price">$40</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        {/* <!-- End Search Dropdown  --> */}
-                    </div>
-
-                    <div className="rbt-offcanvas-side-menu rbt-category-sidemenu">
-                        <div className="inner-wrapper">
-                            <div className="inner-top">
-                                <div className="inner-title">
-                                    <h4 className="title">Course Category</h4>
-                                </div>
-                                <div className="rbt-btn-close">
-                                    <button className="rbt-close-offcanvas rbt-round-btn"><i className="feather-x"></i></button>
-                                </div>
-                            </div>
-                            <nav className="side-nav w-100">
-                                <ul className="rbt-vertical-nav-list-wrapper vertical-nav-menu">
-                                    <li className="vertical-nav-item">
-                                        <a href="#">Course School</a>
-                                        <div className="vartical-nav-content-menu-wrapper">
-                                            <div className="vartical-nav-content-menu">
-                                                <h3 className="rbt-short-title">Course Title</h3>
-                                                <ul className="rbt-vertical-nav-list-wrapper">
-                                                    <li><a href="#">Web Design</a></li>
-                                                    <li><a href="#">Art</a></li>
-                                                    <li><a href="#">Figma</a></li>
-                                                    <li><a href="#">Adobe</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="vartical-nav-content-menu">
-                                                <h3 className="rbt-short-title">Course Title</h3>
-                                                <ul className="rbt-vertical-nav-list-wrapper">
-                                                    <li><a href="#">Photo</a></li>
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">Math</a></li>
-                                                    <li><a href="#">Read</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="vertical-nav-item">
-                                        <a href="#">Online School</a>
-                                        <div className="vartical-nav-content-menu-wrapper">
-                                            <div className="vartical-nav-content-menu">
-                                                <h3 className="rbt-short-title">Course Title</h3>
-                                                <ul className="rbt-vertical-nav-list-wrapper">
-                                                    <li><a href="#">Photo</a></li>
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">Math</a></li>
-                                                    <li><a href="#">Read</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="vartical-nav-content-menu">
-                                                <h3 className="rbt-short-title">Course Title</h3>
-                                                <ul className="rbt-vertical-nav-list-wrapper">
-                                                    <li><a href="#">Web Design</a></li>
-                                                    <li><a href="#">Art</a></li>
-                                                    <li><a href="#">Figma</a></li>
-                                                    <li><a href="#">Adobe</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="vertical-nav-item">
-                                        <a href="#">kindergarten</a>
-                                        <div className="vartical-nav-content-menu-wrapper">
-                                            <div className="vartical-nav-content-menu">
-                                                <h3 className="rbt-short-title">Course Title</h3>
-                                                <ul className="rbt-vertical-nav-list-wrapper">
-                                                    <li><a href="#">Photo</a></li>
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">Math</a></li>
-                                                    <li><a href="#">Read</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="vertical-nav-item">
-                                        <a href="#">classNameic LMS</a>
-                                        <div className="vartical-nav-content-menu-wrapper">
-                                            <div className="vartical-nav-content-menu">
-                                                <h3 className="rbt-short-title">Course Title</h3>
-                                                <ul className="rbt-vertical-nav-list-wrapper">
-                                                    <li><a href="#">Web Design</a></li>
-                                                    <li><a href="#">Art</a></li>
-                                                    <li><a href="#">Figma</a></li>
-                                                    <li><a href="#">Adobe</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div className="read-more-btn">
-                                    <div className="rbt-btn-wrapper mt--20">
-                                        <a className="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
-                                            <span>Learn More</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </nav>
-                            <div className="rbt-offcanvas-footer">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <a className="rbt-close_side_menu" href="javascript:void(0);"></a>
-                </header>
-
-                <div className="popup-mobile-menu">
-                    <div className="inner-wrapper">
-                        <div className="inner-top">
-                            <div className="content">
-                                <div className="logo">
-                                    <a href="index.html">
-                                        <img src="images/logo.png" alt="Education Logo Images" />
-                                    </a>
-                                </div>
-                                <div className="rbt-btn-close">
-                                    <button className="close-button rbt-round-btn"><i className="feather-x"></i></button>
-                                </div>
-                            </div>
-                            <p className="description">Histudy is a education website template. You can customize all.</p>
-                            <ul className="navbar-top-left rbt-information-list justify-content-start">
-                                <li>
-                                    <a href="mailto:hello@example.com"><i className="feather-mail"></i>example@gmail.com</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i className="feather-phone"></i>(302) 555-0107</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <nav className="mainmenu-nav">
-                            <ul className="mainmenu">
-                                <li className="with-megamenu has-menu-child-item position-static">
-                                    <a href="#">Home <i className="feather-chevron-down"></i></a>
-
-                                    <div className="rbt-megamenu menu-skin-dark">
-                                        <div className="wrapper">
-                                            <div className="row row--15 home-plesentation-wrapper single-dropdown-menu-presentation">
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="01-main-demo.html"><img src="images/h1.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="01-main-demo.html">Home Demo <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="12-marketplace.html"><img src="images/h12.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="12-marketplace.html">Marketplace <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="04-kindergarten.html"><img src="images/h4.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="04-kindergarten.html">kindergarten <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="13-university-classNameic.html"><img src="images/h13.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="13-university-classNameic.html">University classNameic <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="14-home-elegant.html"><img src="images/h14.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="14-home-elegant.html">Home Elegant <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="09-gym-coaching.html"><img src="images/h9.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="09-gym-coaching.html">Gym Coaching <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="03-online-school.html"><img src="images/h3.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="03-online-school.html">Online School <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="06-university-status.html"><img src="images/h6.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="06-university-status.html">University Status <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="15-home-technology.html"><img src="images/h15.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="15-home-technology.html">Home Technology <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="07-instructor-portfolio.html"><img src="images/h7.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="07-instructor-portfolio.html">Instructor Portfolio <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="08-language-academy.html"><img src="images/h8.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="08-language-academy.html">Language Academy <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="11-single-course.html"><img src="images/h11.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="11-single-course.html">Single Course <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="10-online-course.html"><img src="images/h10.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="10-online-course.html">Online Course <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="05-classNameic-lms.html"><img src="images/h5.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="05-classNameic-lms.html">classNameic Lms <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="02-course-school.html"><img src="images/h2.jpg" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="02-course-school.html">Course School <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item coming-soon">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="#"><img src="images/coming-soon-1.png" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="#">Coming Soon <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item coming-soon">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="#"><img src="images/coming-soon-2.png" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="#">Coming Soon 2 <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item coming-soon">
-                                                    <div className="demo-single">
-                                                        <div className="inner">
-                                                            <div className="thumbnail">
-                                                                <a href="#"><img src="images/coming-soon-3.png" alt="Demo Images" /></a>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4 className="title"><a href="#">Coming Soon 3 <span className="btn-icon"><i className="feather-arrow-right"></i></span></a></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div className="load-demo-btn text-center">
-                                                <a className="rbt-btn-link color-white" href="#">Scroll to view more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
-                                                </svg></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-
-                                <li className="with-megamenu has-menu-child-item">
-                                    <a href="#">Courses <i className="feather-chevron-down"></i></a>
-
-                                    <div className="rbt-megamenu grid-item-2">
-                                        <div className="wrapper">
-                                            <div className="row">
-                                                <div className="col-lg-12">
-                                                    <div className="mega-top-banner">
-                                                        <div className="content">
-                                                            <h4 className="title">Developer hub</h4>
-                                                            <p className="description">Start building fast, with code samples, key resources and more.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="row row--15">
-                                                <div className="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                                    <h3 className="rbt-short-title">Course Layout</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="course-filter-one-toggle.html">Filter One Toggle</a></li>
-                                                        <li><a href="course-filter-one-open.html">Filter One Open</a></li>
-                                                        <li><a href="course-filter-two-toggle.html">Filter Two Toggle</a></li>
-                                                        <li><a href="course-filter-two-open.html">Filter Two Open</a></li>
-                                                        <li><a href="course-with-tab.html">Course With Tab</a></li>
-                                                        <li><a href="course-with-tab-two.html">Course With Tab Two</a></li>
-                                                        <li><a href="course-card-2.html">Course Card Two</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                                    <h3 className="rbt-short-title">Course Layout</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="course-card-3.html">Course Card Three</a></li>
-                                                        <li><a href="course-masonry.html">Course Masonry</a></li>
-                                                        <li><a href="course-with-sidebar.html">Course With Sidebar</a></li>
-                                                        <li><a href="course-details.html">Course Details</a></li>
-                                                        <li><a href="course-details-2.html">Course Details Two</a></li>
-                                                        <li><a href="lesson.html">Course Lesson <span className="rbt-badge-card">New</span></a></li>
-                                                        <li><a href="create-course.html">Create Course <span className="rbt-badge-card">New</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-12">
-                                                    <ul className="nav-quick-access">
-                                                        <li><a href="#"><i className="feather-folder-minus"></i> Quick Start Guide</a></li>
-                                                        <li><a href="#"><i className="feather-folder-minus"></i> For Open Source</a></li>
-                                                        <li><a href="#"><i className="feather-folder-minus"></i> API Status</a></li>
-                                                        <li><a href="#"><i className="feather-folder-minus"></i> Support</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-
-                                <li className="has-dropdown has-menu-child-item">
-                                    <a href="#">Dashboard
-                                        <i className="feather-chevron-down"></i>
-                                    </a>
-                                    <ul className="submenu">
-                                        <li className="has-dropdown"><a href="#">Instructor Dashboard</a>
-                                            <ul className="submenu">
-                                                <li><a href="instructor-dashboard.html">Dashboard</a></li>
-                                                <li><a href="instructor-profile.html">Profile</a></li>
-                                                <li><a href="instructor-enrolled-courses.html">Enrolled Courses</a></li>
-                                                <li><a href="instructor-wishlist.html">Wishlist</a></li>
-                                                <li><a href="instructor-reviews.html">Reviews</a></li>
-                                                <li><a href="instructor-my-quiz-attempts.html">My Quiz Attempts</a></li>
-                                                <li><a href="instructor-order-history.html">Order History</a></li>
-                                                <li><a href="instructor-course.html">My Course</a></li>
-                                                <li><a href="instructor-announcements.html">Announcements</a></li>
-                                                <li><a href="instructor-quiz-attempts.html">Quiz Attempts</a></li>
-                                                <li><a href="instructor-assignments.html">Assignments</a></li>
-                                                <li><a href="instructor-settings.html">Settings</a></li>
-                                            </ul>
-                                        </li>
-                                        <li className="has-dropdown"><a href="#">Student Dashboard</a>
-                                            <ul className="submenu">
-                                                <li><a href="student-dashboard.html">Dashboard</a></li>
-                                                <li><a href="student-profile.html">Profile</a></li>
-                                                <li><a href="student-enrolled-courses.html">Enrolled Courses</a></li>
-                                                <li><a href="student-wishlist.html">Wishlist</a></li>
-                                                <li><a href="student-reviews.html">Reviews</a></li>
-                                                <li><a href="student-my-quiz-attempts.html">My Quiz Attempts</a></li>
-                                                <li><a href="student-order-history.html">Order History</a></li>
-                                                <li><a href="student-settings.html">Settings</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="with-megamenu has-menu-child-item position-static">
-                                    <a href="#">Pages <i className="feather-chevron-down"></i></a>
-
-                                    <div className="rbt-megamenu grid-item-4">
-                                        <div className="wrapper">
-                                            <div className="row row--15">
-                                                <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                    <h3 className="rbt-short-title">Get Started</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="about-us-01.html">About Us</a></li>
-                                                        <li><a href="about-us-02.html">About Us 02</a></li>
-                                                        <li><a href="event-grid.html">Event Grid</a></li>
-                                                        <li><a href="event-list.html">Event List</a></li>
-                                                        <li><a href="event-sidebar.html">Event Sidebar</a></li>
-                                                        <li><a href="event-details.html">Event Details</a></li>
-                                                        <li><a href="academy-gallery.html">Academy Gallery</a></li>
-                                                        <li><a href="admission-guide.html">Admission Guide</a></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                    <h3 className="rbt-short-title">Get Started</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="profile.html">Profile</a></li>
-                                                        <li><a href="contact.html">Contact Us</a></li>
-                                                        <li><a href="become-a-teacher.html">Become a Teacher</a></li>
-                                                        <li><a href="instructor.html">Instructor</a></li>
-                                                        <li><a href="faqs.html">FAQS</a></li>
-                                                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                        <li><a href="404.html">404 Page</a></li>
-                                                        <li><a href="maintenance.html">Maintenance</a></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                    <h3 className="rbt-short-title">Shop Pages</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="shop.html">Shop <span className="rbt-badge-card">Sale Anything</span></a></li>
-                                                        <li><a href="single-product.html">Single Product</a></li>
-                                                        <li><a href="cart.html">Cart Page</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                        <li><a href="wishlist.html">Wishlist Page</a></li>
-                                                        <li><a href="my-account.html">My Acount</a></li>
-                                                        <li><a href="login.html">Login & Register</a></li>
-                                                        <li><a href="subscription.html">Subscription</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                                    <div className="mega-category-item">
-
-                                                        <div className="nav-category-item">
-                                                            <div className="thumbnail">
-                                                                <div className="image"><img src="images/category-2.png" alt="Course images" /></div>
-                                                                <a href="course-filter-one-toggle.html">
-                                                                    <span>Online Education</span>
-                                                                    <i className="feather-chevron-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div className="nav-category-item">
-                                                            <div className="thumbnail">
-                                                                <div className="image"><img src="images/category-1.png" alt="Course images" /></div>
-                                                                <a href="course-filter-one-toggle.html">
-                                                                    <span>Language Club</span>
-                                                                    <i className="feather-chevron-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div className="nav-category-item">
-                                                            <div className="thumbnail">
-                                                                <div className="image"><img src="images/category-4.png" alt="Course images" /></div>
-                                                                <a href="course-filter-one-toggle.html">
-                                                                    <span>University Status</span>
-                                                                    <i className="feather-chevron-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div className="nav-category-item">
-                                                            <div className="thumbnail">
-                                                                <a href="course-filter-one-toggle.html">
-                                                                    <span>Course School</span>
-                                                                    <i className="feather-chevron-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div className="nav-category-item">
-                                                            <div className="thumbnail">
-                                                                <div className="image"><img src="images/category-9.png" alt="Course images" /></div>
-                                                                <a href="course-filter-one-toggle.html">
-                                                                    <span>Academy</span>
-                                                                    <i className="feather-chevron-right"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-
-                                <li className="with-megamenu has-menu-child-item position-static">
-                                    <a href="#">Elements <i className="feather-chevron-down"></i></a>
-
-                                    <div className="rbt-megamenu grid-item-3">
-                                        <div className="wrapper">
-                                            <div className="row row--15 single-dropdown-menu-presentation">
-                                                <div className="col-lg-4 col-xxl-4 single-mega-item">
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="style-guide.html">Style Guide <span className="rbt-badge-card">Hot</span></a></li>
-                                                        <li><a href="accordion.html">Accordion</a></li>
-                                                        <li><a href="advancetab.html">Advance Tab</a></li>
-                                                        <li><a href="brand.html">Brand</a></li>
-                                                        <li><a href="button.html">Button</a></li>
-                                                        <li><a href="badge.html">Badge</a></li>
-                                                        <li><a href="card.html">Card</a></li>
-                                                        <li><a href="call-to-action.html">Call To Action</a></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-lg-4 col-xxl-4 single-mega-item">
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="counterup.html">Counter</a></li>
-                                                        <li><a href="category.html">Categories</a></li>
-                                                        <li><a href="header.html">Header Style</a></li>
-                                                        <li><a href="newsletter.html">Newsletter</a></li>
-                                                        <li><a href="team.html">Team</a></li>
-                                                        <li><a href="social.html">Social</a></li>
-                                                        <li><a href="list-style.html">List Style</a></li>
-                                                        <li><a href="gallery.html">Gallery</a></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-lg-4 col-xxl-4 single-mega-item">
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="pricing.html">Pricing</a></li>
-                                                        <li><a href="progressbar.html">Progressbar</a></li>
-                                                        <li><a href="testimonial.html">Testimonial</a></li>
-                                                        <li><a href="service.html">Service</a></li>
-                                                        <li><a href="split.html">Split Area</a></li>
-                                                        <li><a href="search.html">Search Style</a></li>
-                                                        <li><a href="instagram.html">Instagram Style</a></li>
-                                                        <li><a href="#">& More Coming</a></li>
-
-                                                    </ul>
-                                                </div>
-
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-12">
-                                                    <div className="btn-wrapper">
-                                                        <a className="rbt-btn btn-gradient hover-icon-reverse square btn-xl w-100 text-center mt--30 hover-transform-none" href="#">
-                                                            <span className="icon-reverse-wrapper">
-                                                                <span className="btn-text">Visit Histudy Template</span>
-                                                                <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                                                <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-
-                                <li className="with-megamenu has-menu-child-item position-static">
-                                    <a href="#">Blog <i className="feather-chevron-down"></i></a>
-
-                                    <div className="rbt-megamenu grid-item-3">
-                                        <div className="wrapper">
-                                            <div className="row row--15">
-                                                <div className="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                                    <h3 className="rbt-short-title">Blog Styles</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="blog-list.html">Blog List</a></li>
-                                                        <li><a href="blog.html">Blog Grid</a></li>
-                                                        <li><a href="blog-grid-minimal.html">Blog Grid Minimal</a></li>
-                                                        <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                                        <li><a href="post-format-standard.html">Post Format Standard</a></li>
-                                                        <li><a href="post-format-gallery.html">Post Format Gallery</a></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                                    <h3 className="rbt-short-title">Get Started</h3>
-                                                    <ul className="mega-menu-item">
-                                                        <li><a href="post-format-quote.html">Post Format Quote</a></li>
-                                                        <li><a href="post-format-audio.html">Post Format Audio</a></li>
-                                                        <li><a href="post-format-video.html">Post Format Video</a></li>
-                                                        <li><a href="#">Media Under Title <span className="rbt-badge-card">Coming</span></a></li>
-                                                        <li><a href="#">Sticky Sidebar <span className="rbt-badge-card">Coming</span></a></li>
-                                                        <li><a href="#">Auto Masonry <span className="rbt-badge-card">Coming</span></a></li>
-                                                        <li><a href="#">Meta Overlaid <span className="rbt-badge-card">Coming</span></a></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                                    <div className="rbt-ads-wrapper">
-                                                        <a className="d-block" href="#"><img src="images/mobile-cat.jpg" alt="Education Images" /></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <div className="mobile-menu-bottom">
-                            <div className="rbt-btn-wrapper mb--20">
-                                <a className="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
-                                    <span>Enroll Now</span>
-                                </a>
-                            </div>
-
-                            <div className="social-share-wrapper">
-                                <span className="rbt-short-title d-block">Find With Us</span>
-                                <ul className="social-icon social-default transparent-with-border justify-content-start mt--20">
-                                    <li><a href="https://www.facebook.com/">
-                                        <i className="feather-facebook"></i>
-                                    </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                        <i className="feather-twitter"></i>
-                                    </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                        <i className="feather-instagram"></i>
-                                    </a>
-                                    </li>
-                                    <li><a href="https://www.linkdin.com/">
-                                        <i className="feather-linkedin"></i>
-                                    </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
+            {/* <!-- Spinner Start --> */}
+            <div id="spinner" className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+                <div className="spinner-border text-primary" style={{ width: "3rem", height: "3rem", }}>
+                    <span className="sr-only">Loading...</span>
                 </div>
+            </div>
+            {/* <!-- Spinner End --> */}
 
-                <div className="rbt-cart-side-menu">
-                    <div className="inner-wrapper">
-                        <div className="inner-top">
-                            <div className="content">
-                                <div className="title">
-                                    <h4 className="title mb--0">Your shopping cart</h4>
-                                </div>
-                                <div className="rbt-btn-close" id="btn_sideNavClose">
-                                    <button className="minicart-close-button rbt-round-btn"><i className="feather-x"></i></button>
+
+
+            <HeaderCarousel />
+
+
+            {/* <!-- Service Start --> */}
+            <div className="container-xxl py-5">
+                <div className="container">
+                    <div className="row g-4">
+
+                        <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div className="service-item text-center pt-3">
+                                <div className="p-4">
+                                    <i className="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
+                                    <h5 className="mb-3">Skilled Instructors</h5>
+                                    <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                                 </div>
                             </div>
                         </div>
-                        <nav className="side-nav w-100">
-                            <ul className="rbt-minicart-wrapper">
-                                <li className="minicart-item">
-                                    <div className="thumbnail">
-                                        <a href="#">
-                                            <img src="images/1.jpg" alt="Product Images" />
-                                        </a>
-                                    </div>
-                                    <div className="product-content">
-                                        <h6 className="title"><a href="single-product.html">Miracle Morning</a></h6>
 
-                                        <span className="quantity">1 * <span className="price">$22</span></span>
-                                    </div>
-                                    <div className="close-btn">
-                                        <button className="rbt-round-btn"><i className="feather-x"></i></button>
-                                    </div>
-                                </li>
 
-                                <li className="minicart-item">
-                                    <div className="thumbnail">
-                                        <a href="#">
-                                            <img src="images/7.jpg" alt="Product Images" />
-                                        </a>
-                                    </div>
-                                    <div className="product-content">
-                                        <h6 className="title"><a href="single-product.html">Happy Strong</a></h6>
-
-                                        <span className="quantity">1 * <span className="price">$30</span></span>
-                                    </div>
-                                    <div className="close-btn">
-                                        <button className="rbt-round-btn"><i className="feather-x"></i></button>
-                                    </div>
-                                </li>
-
-                                <li className="minicart-item">
-                                    <div className="thumbnail">
-                                        <a href="#">
-                                            <img src="images/3.jpg" alt="Product Images" />
-                                        </a>
-                                    </div>
-                                    <div className="product-content">
-                                        <h6 className="title"><a href="single-product.html">Rich Dad Poor Dad</a></h6>
-
-                                        <span className="quantity">1 * <span className="price">$50</span></span>
-                                    </div>
-                                    <div className="close-btn">
-                                        <button className="rbt-round-btn"><i className="feather-x"></i></button>
-                                    </div>
-                                </li>
-
-                                <li className="minicart-item">
-                                    <div className="thumbnail">
-                                        <a href="#">
-                                            <img src="images/4.jpg" alt="Product Images" />
-                                        </a>
-                                    </div>
-                                    <div className="product-content">
-                                        <h6 className="title"><a href="single-product.html">Momentum Theorem</a></h6>
-
-                                        <span className="quantity">1 * <span className="price">$50</span></span>
-                                    </div>
-                                    <div className="close-btn">
-                                        <button className="rbt-round-btn"><i className="feather-x"></i></button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <div className="rbt-minicart-footer">
-                            <hr className="mb--0" />
-                            <div className="rbt-cart-subttotal">
-                                <p className="subtotal"><strong>Subtotal:</strong></p>
-                                <p className="price">$121</p>
-                            </div>
-                            <hr className="mb--0" />
-                            <div className="rbt-minicart-bottom mt--20">
-                                <div className="view-cart-btn">
-                                    <a className="rbt-btn btn-border icon-hover w-100 text-center" href="#">
-                                        <span className="btn-text">View Cart</span>
-                                        <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                    </a>
+                        <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div className="service-item text-center pt-3">
+                                <div className="p-4">
+                                    <i className="fa fa-3x fa-globe text-primary mb-4"></i>
+                                    <h5 className="mb-3">Online classNamees</h5>
+                                    <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                                 </div>
-                                <div className="checkout-btn mt--20">
-                                    <a className="rbt-btn btn-gradient icon-hover w-100 text-center" href="#">
-                                        <span className="btn-text">Checkout</span>
-                                        <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                    </a>
+                            </div>
+                        </div>
+
+
+                        <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                            <div className="service-item text-center pt-3">
+                                <div className="p-4">
+                                    <i className="fa fa-3x fa-home text-primary mb-4"></i>
+                                    <h5 className="mb-3">Home Projects</h5>
+                                    <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                            <div className="service-item text-center pt-3">
+                                <div className="p-4">
+                                    <i className="fa fa-3x fa-book-open text-primary mb-4"></i>
+                                    <h5 className="mb-3">Book Library</h5>
+                                    <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
+            </div>
+            {/* <!-- Service End --> */}
 
-                <a className="close_side_menu" href="javascript:void(0);"></a>
 
 
-                <main className="rbt-main-wrapper">
+            {/* <!-- About Start --> */}
+            <div className="container-xxl py-5">
+                <div className="container">
+                    <div className="row g-5">
+                        <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style={{ minHeight: "400px" }}>
+                            <div className="position-relative h-100">
+                                <img className="img-fluid position-absolute w-100 h-100" src={about} alt="" style={{ objectFit: "cover" }} />
+                            </div>
+                        </div>
+                        <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <h6 className="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                            <h1 className="mb-4">Welcome to eLEARNING</h1>
+                            <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                            <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                            <div className="row gy-2 gx-4 mb-4">
+                                <div className="col-sm-6">
+                                    <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
+                                </div>
+                                <div className="col-sm-6">
+                                    <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Online classNamees</p>
+                                </div>
+                                <div className="col-sm-6">
+                                    <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
+                                </div>
+                                <div className="col-sm-6">
+                                    <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
+                                </div>
+                                <div className="col-sm-6">
+                                    <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Online classNamees</p>
+                                </div>
+                                <div className="col-sm-6">
+                                    <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
+                                </div>
+                            </div>
+                            <a className="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- About End --> */}
 
-                    <div className="rbt-banner-area rbt-banner-1">
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-md-12 pb--120 pt--70">
-                                    <div className="content">
-                                        <div className="inner">
-                                            <div className="rbt-new-badge rbt-new-badge-one">
-                                                <span className="rbt-new-badge-icon">🏆</span> The Leader in Online Learning
-                                            </div>
 
-                                            <h1 className="title">
-                                                Build The Skills <br /> To Drive Your Career.
-                                            </h1>
-                                            <p className="description">
-                                                Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-                                                <strong>Velit
-                                                    officia consequat.</strong>
-                                            </p>
-                                            <div className="slider-btn">
-                                                <a className="rbt-btn btn-gradient hover-icon-reverse" href="#">
-                                                    <span className="icon-reverse-wrapper">
-                                                        <span className="btn-text">View Course</span>
-                                                        <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                                        <span className="btn-icon"><i className="feather-arrow-right"></i></span>
-                                                    </span>
-                                                </a>
-                                            </div>
+            {/* <!-- Categories Start --> */}
+            <div className="container-xxl py-5 category">
+                <div className="container">
+                    <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 className="section-title bg-white text-center text-primary px-3">Categories</h6>
+                        <h1 className="mb-5">Courses Categories</h1>
+                    </div>
+                    <div className="row g-3">
+                        <div className="col-lg-7 col-md-6">
+                            <div className="row g-3">
+                                <div className="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                                    <a className="position-relative d-block overflow-hidden" href="">
+                                        <img className="img-fluid" src={Rcat1} alt="" />
+                                        <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
+                                            <h5 className="m-0">Web Design</h5>
+                                            <small className="text-primary">49 Courses</small>
                                         </div>
-                                        <div className="shape-wrapper" id="scene">
-                                            <img src="images/banner-01.png" alt="Hero Image" />
-                                            <div className="hero-bg-shape-1 layer" data-depth="0.4">
-                                                <img src="images/shape-01.png" alt="Hero Image Background Shape" />
-                                            </div>
-                                            <div className="hero-bg-shape-2 layer" data-depth="0.4">
-                                                <img src="images/shape-02.png" alt="Hero Image Background Shape" />
-                                            </div>
+                                    </a>
+                                </div>
+                                <div className="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                                    <a className="position-relative d-block overflow-hidden" href="">
+                                        <img className="img-fluid" src={Rcat2} alt="" />
+                                        <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
+                                            <h5 className="m-0">Graphic Design</h5>
+                                            <small className="text-primary">49 Courses</small>
                                         </div>
-
-                                        <div className="banner-card pb--60 mb--50 swiper rbt-dot-bottom-center banner-swiper-active">
-                                            <div className="swiper-wrapper">
-
-
-                                                <div className="swiper-slide">
-                                                    <div className="rbt-card variation-01 rbt-hover">
-                                                        <div className="rbt-card-img">
-                                                            <a href="course-details.html">
-                                                                <img src="images/course-01.jpg" alt="Card image" />
-                                                                <div className="rbt-badge-3 bg-white">
-                                                                    <span>-40%</span>
-                                                                    <span>Off</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div className="rbt-card-body">
-                                                            <ul className="rbt-meta">
-                                                                <li><i className="feather-book"></i>12 Lessons</li>
-                                                                <li><i className="feather-users"></i>50 Students</li>
-                                                            </ul>
-                                                            <h4 className="rbt-card-title"><a href="course-details.html">React</a>
-                                                            </h4>
-                                                            <p className="rbt-card-text">It is a long established fact that a reader
-                                                                will be distracted.</p>
-                                                            <div className="rbt-review">
-                                                                <div className="rating">
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                </div>
-                                                                <span className="rating-count"> (15 Reviews)</span>
-                                                            </div>
-                                                            <div className="rbt-card-bottom">
-                                                                <div className="rbt-price">
-                                                                    <span className="current-price">$70</span>
-                                                                    <span className="off-price">$120</span>
-                                                                </div>
-                                                                <a className="rbt-btn-link" href="course-details.html">Learn More<i className="feather-arrow-right"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="swiper-slide">
-                                                    <div className="rbt-card variation-01 rbt-hover">
-                                                        <div className="rbt-card-img">
-                                                            <a href="course-details.html">
-                                                                <img src="images/classNameic-lms-01.jpg" alt="Card image" />
-                                                                <div className="rbt-badge-3 bg-white">
-                                                                    <span>-40%</span>
-                                                                    <span>Off</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div className="rbt-card-body">
-                                                            <ul className="rbt-meta">
-                                                                <li><i className="feather-book"></i>12 Lessons</li>
-                                                                <li><i className="feather-users"></i>50 Students</li>
-                                                            </ul>
-                                                            <h4 className="rbt-card-title"><a href="course-details.html">React</a>
-                                                            </h4>
-                                                            <p className="rbt-card-text">It is a long established fact that a reader
-                                                                will be distracted.</p>
-                                                            <div className="rbt-review">
-                                                                <div className="rating">
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                </div>
-                                                                <span className="rating-count"> (15 Reviews)</span>
-                                                            </div>
-                                                            <div className="rbt-card-bottom">
-                                                                <div className="rbt-price">
-                                                                    <span className="current-price">$70</span>
-                                                                    <span className="off-price">$120</span>
-                                                                </div>
-                                                                <a className="rbt-btn-link" href="course-details.html">Learn More<i className="feather-arrow-right"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div className="swiper-slide">
-                                                    <div className="rbt-card variation-01 rbt-hover">
-                                                        <div className="rbt-card-img">
-                                                            <a href="course-details.html">
-                                                                <img src="images/course-online-02.jpg" alt="Card image" />
-                                                                <div className="rbt-badge-3 bg-white">
-                                                                    <span>-40%</span>
-                                                                    <span>Off</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                        <div className="rbt-card-body">
-                                                            <ul className="rbt-meta">
-                                                                <li><i className="feather-book"></i>12 Lessons</li>
-                                                                <li><i className="feather-users"></i>50 Students</li>
-                                                            </ul>
-                                                            <h4 className="rbt-card-title"><a href="course-details.html">React</a>
-                                                            </h4>
-                                                            <p className="rbt-card-text">It is a long established fact that a reader
-                                                                will be distracted.</p>
-                                                            <div className="rbt-review">
-                                                                <div className="rating">
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                    <i className="fas fa-star"></i>
-                                                                </div>
-                                                                <span className="rating-count"> (15 Reviews)</span>
-                                                            </div>
-                                                            <div className="rbt-card-bottom">
-                                                                <div className="rbt-price">
-                                                                    <span className="current-price">$70</span>
-                                                                    <span className="off-price">$120</span>
-                                                                </div>
-                                                                <a className="rbt-btn-link" href="course-details.html">Learn More<i className="feather-arrow-right"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div className="rbt-swiper-pagination"></div>
+                                    </a>
+                                </div>
+                                <div className="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
+                                    <a className="position-relative d-block overflow-hidden" href="">
+                                        <img className="img-fluid" src={Rcat3} alt="" />
+                                        <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
+                                            <h5 className="m-0">Video Editing</h5>
+                                            <small className="text-primary">49 Courses</small>
                                         </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style={{ minHeight: "350px" }}>
+                            <a className="position-relative d-block h-100 overflow-hidden" href="">
+                                <img className="img-fluid position-absolute w-100 h-100" src={Rcat4} alt="" style={{ objectFit: "cover" }} />
+                                <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
+                                    <h5 className="m-0">Online Marketing</h5>
+                                    <small className="text-primary">49 Courses</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- Categories Start --> */}
+
+
+            {/* <!-- Courses Start --> */}
+            <div className="container-xxl py-5">
+                <div className="container">
+                    <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 className="section-title bg-white text-center text-primary px-3">Courses</h6>
+                        <h1 className="mb-5">Popular Courses</h1>
+                    </div>
+                    <div className="row g-4 justify-content-center">
+                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div className="course-item bg-light">
+                                <div className="position-relative overflow-hidden">
+                                    <img className="img-fluid" src={Course1} alt="" />
+                                    <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Read More</a>
+                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3" style={{ borderRadius: "0 30px 30px 0" }}>Join Now</a>
                                     </div>
+                                </div>
+                                <div className="text-center p-4 pb-0">
+                                    <h3 className="mb-0">$149.00</h3>
+                                    <div className="mb-3">
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small>(123)</small>
+                                    </div>
+                                    <h5 className="mb-4">Web Design & Development Course for Beginners</h5>
+                                </div>
+                                <div className="d-flex border-top">
+                                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                                    <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>30 Students</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div className="course-item bg-light">
+                                <div className="position-relative overflow-hidden">
+                                    <img className="img-fluid" src={RCourse2} alt="" />
+                                    <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Read More</a>
+                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3" style={{ borderRadius: "0 30px 30px 0" }}>Join Now</a>
+                                    </div>
+                                </div>
+                                <div className="text-center p-4 pb-0">
+                                    <h3 className="mb-0">$149.00</h3>
+                                    <div className="mb-3">
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small>(123)</small>
+                                    </div>
+                                    <h5 className="mb-4">Web Design & Development Course for Beginners</h5>
+                                </div>
+                                <div className="d-flex border-top">
+                                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                                    <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>30 Students</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                            <div className="course-item bg-light">
+                                <div className="position-relative overflow-hidden">
+                                    <img className="img-fluid" src={RCourse3} alt="" />
+                                    <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Read More</a>
+                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3" style={{ borderRadius: "0 30px 30px 0" }}>Join Now</a>
+                                    </div>
+                                </div>
+                                <div className="text-center p-4 pb-0">
+                                    <h3 className="mb-0">$149.00</h3>
+                                    <div className="mb-3">
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small className="fa fa-star text-primary"></small>
+                                        <small>(123)</small>
+                                    </div>
+                                    <h5 className="mb-4">Web Design & Development Course for Beginners</h5>
+                                </div>
+                                <div className="d-flex border-top">
+                                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                                    <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>30 Students</small>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <!-- End Banner Area --> */}
+                </div>
+            </div>
+            {/* <!-- Courses End --> */}
 
-                    <div className="rbt-categories-area bg-color-white rbt-section-gapBottom">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-lg-12">
-                                    <div className="section-title text-center">
-                                        <span className="subtitle bg-primary-opacity">CATEGORIES</span>
-                                        <h2 className="title">Explore Top Courses Caterories <br /> That Change Yourself</h2>
+
+            {/* <!-- Team Start --> */}
+            <div className="container-xxl py-5">
+                <div className="container">
+                    <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 className="section-title bg-white text-center text-primary px-3">Instructors</h6>
+                        <h1 className="mb-5">Expert Instructors</h1>
+                    </div>
+                    <div className="row g-4">
+                        <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div className="team-item bg-light">
+                                <div className="overflow-hidden">
+                                    <img className="img-fluid" src={team1} alt="" />
+                                </div>
+                                <div className="position-relative d-flex justify-content-center" style={{ marginTop: "-23px" }}>
+                                    <div className="bg-light d-flex justify-content-center pt-2 px-1">
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
                                     </div>
                                 </div>
+                                <div className="text-center p-4">
+                                    <h5 className="mb-0">Instructor Name</h5>
+                                    <small>Designation</small>
+                                </div>
                             </div>
-                            <div className="row g-5 mt--20">
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/web-design.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Web Design</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">25 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                        </div>
+                        <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div className="team-item bg-light">
+                                <div className="overflow-hidden">
+                                    <img className="img-fluid" src={Rteam2} alt="" />
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/design.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Graphic Design</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">30 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div className="position-relative d-flex justify-content-center" style={{ marginTop: "-23px" }}>
+                                    <div className="bg-light d-flex justify-content-center pt-2 px-1">
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    </div>
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/personal.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Personal Development</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">20 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div className="text-center p-4">
+                                    <h5 className="mb-0">Instructor Name</h5>
+                                    <small>Designation</small>
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/server.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">IT and Software</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">15 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                            <div className="team-item bg-light">
+                                <div className="overflow-hidden">
+                                    <img className="img-fluid" src={Rteam3} alt="" />
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/pantone.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Sales Marketing</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">15 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div className="position-relative d-flex justify-content-center" style={{ marginTop: "-23px" }}>
+                                    <div className="bg-light d-flex justify-content-center pt-2 px-1">
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    </div>
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/paint-palette.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Art & Humanities</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">15 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div className="text-center p-4">
+                                    <h5 className="mb-0">Instructor Name</h5>
+                                    <small>Designation</small>
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/smartphone.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Mobile Application</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">15 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                            <div className="team-item bg-light">
+                                <div className="overflow-hidden">
+                                    <img className="img-fluid" src={Rteam4} alt="" />
                                 </div>
-                                {/* <!-- End Category Box Layout  --> */}
-
-                                {/* <!-- Start Category Box Layout  --> */}
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <a className="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
-                                        <div className="inner">
-                                            <div className="icons">
-                                                <img src="images/infographic.png" alt="Icons Images" />
-                                            </div>
-                                            <div className="content">
-                                                <h5 className="title">Finance & Accounting</h5>
-                                                <div className="read-more-btn">
-                                                    <span className="rbt-btn-link">15 Courses<i className="feather-arrow-right"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div className="position-relative d-flex justify-content-center" style={{ marginTop: "-23px" }}>
+                                    <div className="bg-light d-flex justify-content-center pt-2 px-1">
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-facebook-f"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-twitter"></i></a>
+                                        <a className="btn btn-sm-square btn-primary mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                    </div>
                                 </div>
-
+                                <div className="text-center p-4">
+                                    <h5 className="mb-0">Instructor Name</h5>
+                                    <small>Designation</small>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            {/* <!-- Team End --> */}
 
-                </main>
-            </body>
+
+            {/* <!-- Testimonial Start --> */}
+            <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div className="container">
+                    <div className="text-center">
+                        <h6 className="section-title bg-white text-center text-primary px-3">Testimonial</h6>
+                        <h1 className="mb-5">Our Students Say!</h1>
+                    </div>
+                    <div className="owl-carousel testimonial-carousel position-relative">
+                        <Carousel
+                            showThumbs={false}
+                            showArrows={true}
+                            showStatus={false}
+                            infiniteLoop={true}
+                            autoPlay={true} // Enable auto-play
+                            interval={3000} // Set the interval in milliseconds (e.g., 5000ms = 5 seconds)
+                            stopOnHover={false} // Stop auto-play on hover
+                        >
+                            <div className="testimonial-item text-center">
+                                <img className="border rounded-circle p-2 mx-auto mb-3" src={Rtestimonial1} style={{ width: "80px", height: "80px" }} />
+                                <h5 className="mb-0">Client Name</h5>
+                                <p>Profession</p>
+                                <div className="testimonial-text bg-light text-center p-4">
+                                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                                </div>
+                            </div>
+                            <div className="testimonial-item text-center">
+                                <img className="border rounded-circle p-2 mx-auto mb-3" src={testimonial2} style={{ width: "80px", height: "80px" }} />
+                                <h5 className="mb-0">Client Name</h5>
+                                <p>Profession</p>
+                                <div className="testimonial-text bg-light text-center p-4">
+                                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                                </div>
+                            </div>
+                            <div className="testimonial-item text-center">
+                                <img className="border rounded-circle p-2 mx-auto mb-3" src={Rtestimonial3} style={{ width: "80px", height: "80px" }} />
+                                <h5 className="mb-0">Client Name</h5>
+                                <p>Profession</p>
+                                <div className="testimonial-text bg-light text-center p-4">
+                                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                                </div>
+                            </div>
+                            <div className="testimonial-item text-center">
+                                <img className="border rounded-circle p-2 mx-auto mb-3" src={testimonial4} style={{ width: "80px", height: "80px" }} />
+                                <h5 className="mb-0">Client Name</h5>
+                                <p>Profession</p>
+                                <div className="testimonial-text bg-light text-center p-4">
+                                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                                </div>
+                            </div>
+                            </Carousel>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- Testimonial End --> */}
+            {/* <!-- Footer Start --> */}
+            <div className="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+                <div className="container py-5">
+                    <div className="row g-5">
+                        <div className="col-lg-3 col-md-6">
+                            <h4 className="text-white mb-3">Quick Link</h4>
+                            <a className="btn btn-link" href="">About Us</a>
+                            <a className="btn btn-link" href="">Contact Us</a>
+                            <a className="btn btn-link" href="">Privacy Policy</a>
+                            <a className="btn btn-link" href="">Terms & Condition</a>
+                            <a className="btn btn-link" href="">FAQs & Help</a>
+                        </div>
+                        <div className="col-lg-3 col-md-6">
+                            <h4 className="text-white mb-3">Contact</h4>
+                            <p className="mb-2"><i className="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                            <p className="mb-2"><i className="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                            <p className="mb-2"><i className="fa fa-envelope me-3"></i>info@example.com</p>
+                            <div className="d-flex pt-2">
+                                <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-youtube"></i></a>
+                                <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6">
+                            <h4 className="text-white mb-3">Gallery</h4>
+                            <div className="row g-2 pt-2">
+                                <div className="col-4">
+                                    <img className="img-fluid bg-light p-1" src={Course1} alt="" />
+                                </div>
+                                <div className="col-4">
+                                    <img className="img-fluid bg-light p-1" src={RCourse2} alt="" />
+                                </div>
+                                <div className="col-4">
+                                    <img className="img-fluid bg-light p-1" src={RCourse3} alt="" />
+                                </div>
+                                <div className="col-4">
+                                    <img className="img-fluid bg-light p-1" src={RCourse2} alt="" />
+                                </div>
+                                <div className="col-4">
+                                    <img className="img-fluid bg-light p-1" src={RCourse3} alt="" />
+                                </div>
+                                <div className="col-4">
+                                    <img className="img-fluid bg-light p-1" src={Course1} alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-lg-3 col-md-6">
+                            <h4 className="text-white mb-3">Newsletter</h4>
+                            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                            <div className="position-relative mx-auto" style={{ maxWidth: "400px" }}>
+                                <input className="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
+                                <button type="button" className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="copyright">
+                        <div className="row">
+                            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                &copy; <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+
+
+                                Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            </div>
+                            <div className="col-md-6 text-center text-md-end">
+                                <div className="footer-menu">
+                                    <a href="">Home</a>
+                                    <a href="">Cookies</a>
+                                    <a href="">Help</a>
+                                    <a href="">FQAs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- Footer End --> */}
+
+
+            {/* </body > */}
         </>
 
     )

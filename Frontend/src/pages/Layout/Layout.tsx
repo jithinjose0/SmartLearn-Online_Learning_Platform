@@ -1,50 +1,75 @@
 import { Outlet } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import '../../assets/css/style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuth } from "../../context/AuthContext";
+// import { useAuthAdmin } from "../../context/AdminContext";
+import { useNavigate } from 'react-router-dom';
 const Layout = () => {
+    const {user, logout,admin, } = useAuth();
+    // const {} = useAuthAdmin();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+      };
+    const handleLogoutAdmin = () => {
+        logout();
+        navigate("/");
+      };
     return (
         <>
-            
-            <nav className="navbar navbar-expand-lg navbar-light" style={{height:"48px", backgroundColor:"#163458"}}>
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/home">Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/Signin">Login</a>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled="true" >Disabled</a>
-                            </li>
-                        </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+
+            {/* <!-- Navbar Start --> */}
+            <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0" style={{maxHeight:"60px"}}>
+                <a href="index.html" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
+                    <h2 className="m-0 text-primary"><i className="fa fa-book me-3"></i>eLEARNING</h2>
+                </a>
+                <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarCollapse">
+                    <div className="navbar-nav ms-auto p-4 p-lg-0">
+                        <a href="/home" className="nav-item nav-link active">Home</a>
+                        <a href="about.html" className="nav-item nav-link">About</a>
+                        <a href="/all_courses" className="nav-item nav-link">Courses</a>
+                        {/* <div className="nav-item dropdown">
+                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div className="dropdown-menu fade-down m-0">
+                                <a href="team.html" className="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" className="dropdown-item">Testimonial</a>
+                                <a href="404.html" className="dropdown-item">404 Page</a>
+                            </div>
+                        </div> */}
+                        {/* <a href="contact.html" className="nav-item nav-link">Contact</a> */}
+                        {user ? (
+                            <>
+                            <a href="/enrolled_list" className="nav-item nav-link">Enrolled</a>
+                            <a href="" onClick={handleLogout} className="nav-item nav-link">Logout</a>
+                            </>
+                        ) :  (
+                            !admin && <a href="/signin" className="nav-item nav-link">Login</a>
+                            
+                        )}
+                        {admin ? (
+                            <>
+                            <a href="/dash"  className="nav-item nav-link">Dashboard</a>
+                            <a href="/create_course"  className="nav-item nav-link">New Course</a>
+                            <a href="" onClick={handleLogoutAdmin} className="nav-item nav-link">Logout</a>
+                            
+                            
+                            </>
+                        ) : (
+                            !user && <a href="/admin_signin" className="nav-item nav-link">Instructor | login</a>
+                        )}
+                        
                     </div>
+                    {/* <a href="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i className="fa fa-arrow-right ms-3"></i></a> */}
                 </div>
             </nav>
-            
-            <div>
-                <Outlet />
-            </div>
+            <Outlet/>
+            {/* <!-- Navbar End --> */}
             
 
         </>
