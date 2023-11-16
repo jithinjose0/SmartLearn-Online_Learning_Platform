@@ -41,7 +41,9 @@ const CoursesAll: React.FC = () => {
                                             <img className="img-fluid" src={baseImageUrl + course.image} alt={course.title} width={600} height={200}/>
                                             <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                                                 {/* <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Read More</a> */}
-                                                <a href={`/course/${course._id}`} className="flex-shrink-0 btn btn-sm btn-primary px-5" style={{ borderRadius: "30px 30px 30px 30px" }}>Enroll Now</a>
+                                                <a href={`/course/${course._id}`} className="flex-shrink-0 btn btn-sm btn-primary px-5" style={{ borderRadius: "30px 30px 30px 30px" }}
+                                               
+                                                >Enroll Now</a>
                                             </div>
                                         </div>
                                         <div className="text-center p-4 pb-0">

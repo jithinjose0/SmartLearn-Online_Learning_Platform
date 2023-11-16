@@ -49,6 +49,27 @@ export class EnrollmentController {
         }
     }
 
+    // // to check user is enrolling the same course or not
+    public async checkEnrollment(req: Request, res: Response): Promise<void>  {
+        try {
+            const userId = req.params.userId;
+            const courseId = req.params.courseId;
+    
+            // Check if the user is enrolled in the course
+            const enrollment = await Enrollment.findOne({ userId, courseId });
+    
+            if (enrollment) {
+                res.status(200).json({ enrolled: true });
+            } else {
+                res.status(200).json({ enrolled: false });
+            }
+        } catch (error) {
+            console.error('Error while checking enrollment:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    };
+
+
 
 
     // Add more controller methods as needed

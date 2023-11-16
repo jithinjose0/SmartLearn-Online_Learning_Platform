@@ -16,6 +16,7 @@ import { useAuth } from './context/AuthContext';
 import CourseDetail from './pages/Courses/courseDetail';
 import EnrolledCourse from './pages/Courses/EnrolledList';
 import StudentEnrolledList from './pages/Instructors/StudentsEnrolledList';
+import UpdateCourse from './pages/Courses/UpdateCourse';
 function App() {
   const { user, admin } = useAuth();
   // const navigate = useNavigate();
@@ -37,6 +38,7 @@ function App() {
             <Route path="/course/:courseId" element={<CourseDetail />} />
             <Route path="enrolled_list" element={<EnrolledCourse />} />
             <Route path="students_enrolled_list" element={<StudentEnrolledList />} />
+            <Route path="/update/:id" element={<UpdateCourse />} />
             {/* <Route path="create_course" element={<CreateCourse />} /> */}
 
             {/* Private Routes */}

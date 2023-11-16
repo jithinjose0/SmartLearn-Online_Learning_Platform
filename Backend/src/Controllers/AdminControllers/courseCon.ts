@@ -119,6 +119,7 @@ class CourseController {
     static async deleteCourse(req: Request, res: Response) {
         try {
             const courseId = req.params.id;
+            console.log("courseI",courseId)
             const deletedCourse = await Course.findByIdAndRemove(courseId);
             if (!deletedCourse) {
                 return res.status(404).json({ error: 'Course not found.' });

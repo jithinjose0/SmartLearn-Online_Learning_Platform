@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 import YouTube, { YouTubeProps } from 'react-youtube';
+// import { useNavigate } from 'react-router-dom';
 const baseImageUrl = 'http://localhost:8080/instructors/api/getImage/';
 
 
 const EnrolledCourse: React.FC = () => {
     const { user } = useAuth();
     const [courses, setCourseDetails] = useState<any[]>([]);
+    // const  navigate  = useNavigate();
 
     console.log(courses);
-
+    // Function to check for duplicate entries in an array
+    
     useEffect(() => {
         async function checkEnrollmentStatus() {
             try {
@@ -22,6 +25,8 @@ const EnrolledCourse: React.FC = () => {
 
                     if (response.status === 200) {
                         const enrolledCourses = response.data;
+                        // Check for duplicate entries in the enrolledCourses array
+                        
                         setCourseDetails(enrolledCourses);
                     } else {
                         console.error('Failed to fetch enrollment data from the API');
@@ -51,10 +56,10 @@ const EnrolledCourse: React.FC = () => {
     function extractVideoIdFromUrl(url: string): string | null {
         // Regular expression to match the video ID in a YouTube URL
         const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube-nocookie\.com\/embed\/)([a-zA-Z0-9_-]{11})/;
-    
+
         // Try to match the URL with the regular expression
         const match = url.match(regex);
-    
+
         // If a match is found, return the video ID; otherwise, return null
         if (match && match[1]) {
             return match[1];
@@ -62,7 +67,7 @@ const EnrolledCourse: React.FC = () => {
             return null;
         }
     }
-    
+
     return (
         <div className="container-xxl py-5">
             <div className="container">
@@ -71,13 +76,16 @@ const EnrolledCourse: React.FC = () => {
                     <br />
                     {/* <h1 className="mb-5">Your Courses</h1> */}
                 </div>
-                <br/>
+                <br />
                 <div className="row g-4 justify-content-center">
                     {courses.map((course: any) => (
                         <div className="col-lg-4 col-md-6 wow fadeInUp" >
                             <div className="course-item bg-light">
                                 <div className="position-relative overflow-hidden">
-                                <YouTube videoId={extractVideoIdFromUrl(course.courseId.video_url) ?? undefined} opts={opts} onReady={onPlayerReady} />
+                                    {course.courseId && course.courseId.video_url && (
+                                        <YouTube videoId={extractVideoIdFromUrl(course.courseId.video_url) ?? undefined} opts={opts} onReady={onPlayerReady} />
+                                    )}
+                                    {/* <YouTube videoId={extractVideoIdFromUrl(course.courseId.video_url) ?? undefined} opts={opts} onReady={onPlayerReady} /> */}
                                     {/* <img className="img-fluid" src={baseImageUrl + course.courseId.image} alt={course.title} width={600} height={200} /> */}
                                     {/* <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                                         <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-4 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Update</a>
@@ -94,7 +102,10 @@ const EnrolledCourse: React.FC = () => {
                                         <small className="fa fa-star text-primary"></small>
                                         <small>(123)</small>
                                     </div> */}
-                                    <h5 className="mb-4">{course.courseId.title}</h5>
+                                    {/* <h5 className="mb-4">{course.courseId.title}</h5> */}
+                                    {course.courseId && course.courseId.title && (
+                                        <h5 className="mb-4">{course.courseId.title}</h5>
+                                    )}
                                 </div>
                                 <br />
                                 {/* <div className="d-flex border-top">

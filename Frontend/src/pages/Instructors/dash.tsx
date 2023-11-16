@@ -29,9 +29,25 @@ const Dash = () => {
         }
 
         fetchCourses();
-    }, [admin.userData._id]);
+    }, [admin?.userData?._id]);
 
-    
+
+    // delete course
+    const handleDeleteClick = async (courseId:any) => {
+        try {
+            const response = await fetch(`http://localhost:8080/instructors/courses/delete/${courseId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!response.ok) throw new Error("Something went wrong!");
+            window.location.reload();
+        } catch (err) {
+            alert(err);
+        };
+    };
 
 
     return (
@@ -40,7 +56,7 @@ const Dash = () => {
             <div className="container">
                 <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 className="section-title bg-white text-center text-primary px-3">Courses</h6>
-                    <br/>
+                    <br />
                     {/* <h1 className="mb-5">Your Courses</h1> */}
                 </div>
                 <div className="row g-4 justify-content-center">
@@ -50,8 +66,8 @@ const Dash = () => {
                                 <div className="position-relative overflow-hidden">
                                     <img className="img-fluid" src={baseImageUrl + course.image} alt={course.title} width={600} height={200} />
                                     <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-4 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Update</a>
-                                        <a href="#" className="flex-shrink-0 btn btn-sm btn-primary px-4" style={{ borderRadius: "0px 30px 30px 0px" }}>Delete</a>
+                                        <a href={`/update/${course._id}`} className="flex-shrink-0 btn btn-sm btn-primary px-4 border-end" style={{ borderRadius: "30px 0 0 30px" }}>Update</a>
+                                        <a href="" onClick={() => handleDeleteClick(course._id)} className="flex-shrink-0 btn btn-sm btn-primary px-4" style={{ borderRadius: "0px 30px 30px 0px" }}>Delete</a>
                                     </div>
                                 </div>
                                 <div className="text-center p-4 pb-0">
@@ -66,7 +82,7 @@ const Dash = () => {
                                     </div>
                                     <h5 className="mb-4">{course.title}</h5>
                                 </div>
-                                <br/>
+                                <br />
                                 {/* <div className="d-flex border-top">
                                     <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>{course.Admin_id.username}</small>
                                     <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>

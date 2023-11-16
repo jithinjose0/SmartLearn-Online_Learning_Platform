@@ -27,10 +27,10 @@ routerAdmin.get('/courses', CourseController.getAllCourses);
 routerAdmin.get('/courses/:id', CourseController.getCourseById);
 
 // Update a course by ID
-routerAdmin.put('/courses/:id', upload.single('image'),CourseController.updateCourse);
+routerAdmin.put('/courses/update/:id', upload.single('image'),CourseController.updateCourse);
 
 // Delete a course by ID
-routerAdmin.delete('/courses/:id', CourseController.deleteCourse);
+routerAdmin.delete('/courses/delete/:id', CourseController.deleteCourse);
 
 routerAdmin.get('/courses_by_admin/:adminId', CourseController.getCoursesByAdminID);
 
@@ -55,4 +55,5 @@ routerAdmin.get('/getAll/enrollments', enrollmentController.getAllEnrollments);
 //write a route using getUserCoursesById
 routerAdmin.get("/enrolled_courses/:id", enrollmentController.getUserCoursesById);
 routerAdmin.get("/enrolled/by_admin_id", enrollmentController.getEnrollmentsByAdminId);
+routerAdmin.get('/enrollments/:userId/:courseId', enrollmentController.checkEnrollment);
 export default routerAdmin;

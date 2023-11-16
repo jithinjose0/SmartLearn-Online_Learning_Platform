@@ -88,6 +88,7 @@ const Home: React.FC = () => {
             offset: 0, // How far the element is from the viewport to trigger the animation
             mobile: true, // Enable animations on mobile devices
             live: true, // Live mode (default is true) to reapply animations when new content is added
+
         });
         wow.init();
     }, []); // Empty dependency array to run the effect only once when the component mounts
@@ -153,7 +154,7 @@ const Home: React.FC = () => {
                             <div className="service-item text-center pt-3">
                                 <div className="p-4">
                                     <i className="fa fa-3x fa-globe text-primary mb-4"></i>
-                                    <h5 className="mb-3">Online classNamees</h5>
+                                    <h5 className="mb-3">Online Courses</h5>
                                     <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                                 </div>
                             </div>
@@ -164,7 +165,7 @@ const Home: React.FC = () => {
                             <div className="service-item text-center pt-3">
                                 <div className="p-4">
                                     <i className="fa fa-3x fa-home text-primary mb-4"></i>
-                                    <h5 className="mb-3">Home Projects</h5>
+                                    <h5 className="mb-3"> Projects</h5>
                                     <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                                 </div>
                             </div>
@@ -189,7 +190,7 @@ const Home: React.FC = () => {
 
 
             {/* <!-- About Start --> */}
-            <div className="container-xxl py-5">
+            <div className="container-xxl py-5" id="about">
                 <div className="container">
                     <div className="row g-5">
                         <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style={{ minHeight: "400px" }}>
@@ -199,9 +200,9 @@ const Home: React.FC = () => {
                         </div>
                         <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                             <h6 className="section-title bg-white text-start text-primary pe-3">About Us</h6>
-                            <h1 className="mb-4">Welcome to eLEARNING</h1>
-                            <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                            <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                            <h1 className="mb-4">Welcome to SmartLearn</h1>
+                            <p className="mb-4">We share knowledge with the world,Improving lives through learning</p>
+                            <p className="mb-4">Whether you want to learn or to share what you know, you’ve come to the right place. As a global destination for online learning, we empower organizations and individuals with flexible and effective skill development.</p>
                             <div className="row gy-2 gx-4 mb-4">
                                 <div className="col-sm-6">
                                     <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
@@ -244,7 +245,7 @@ const Home: React.FC = () => {
                                     <a className="position-relative d-block overflow-hidden" href="">
                                         <img className="img-fluid" src={Rcat1} alt="" />
                                         <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
-                                            <h5 className="m-0">Web Design</h5>
+                                            <h5 className="m-0">Programming Languages</h5>
                                             <small className="text-primary">49 Courses</small>
                                         </div>
                                     </a>
@@ -253,7 +254,7 @@ const Home: React.FC = () => {
                                     <a className="position-relative d-block overflow-hidden" href="">
                                         <img className="img-fluid" src={Rcat2} alt="" />
                                         <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
-                                            <h5 className="m-0">Graphic Design</h5>
+                                            <h5 className="m-0">Web Design</h5>
                                             <small className="text-primary">49 Courses</small>
                                         </div>
                                     </a>
@@ -262,7 +263,7 @@ const Home: React.FC = () => {
                                     <a className="position-relative d-block overflow-hidden" href="">
                                         <img className="img-fluid" src={Rcat3} alt="" />
                                         <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
-                                            <h5 className="m-0">Video Editing</h5>
+                                            <h5 className="m-0">Full Stack Development</h5>
                                             <small className="text-primary">49 Courses</small>
                                         </div>
                                     </a>
@@ -273,7 +274,7 @@ const Home: React.FC = () => {
                             <a className="position-relative d-block h-100 overflow-hidden" href="">
                                 <img className="img-fluid position-absolute w-100 h-100" src={Rcat4} alt="" style={{ objectFit: "cover" }} />
                                 <div className="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style={{ margin: "1px" }}>
-                                    <h5 className="m-0">Online Marketing</h5>
+                                    <h5 className="m-0">Mobile Development</h5>
                                     <small className="text-primary">49 Courses</small>
                                 </div>
                             </a>
@@ -469,7 +470,7 @@ const Home: React.FC = () => {
 
 
             {/* <!-- Testimonial Start --> */}
-            <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            {/* <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div className="container">
                     <div className="text-center">
                         <h6 className="section-title bg-white text-center text-primary px-3">Testimonial</h6>
@@ -520,7 +521,7 @@ const Home: React.FC = () => {
                             </Carousel>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* <!-- Testimonial End --> */}
             {/* <!-- Footer Start --> */}
             <div className="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -569,24 +570,24 @@ const Home: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6">
+                        {/* <div className="col-lg-3 col-md-6">
                             <h4 className="text-white mb-3">Newsletter</h4>
                             <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
                             <div className="position-relative mx-auto" style={{ maxWidth: "400px" }}>
                                 <input className="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
                                 <button type="button" className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="container">
                     <div className="copyright">
                         <div className="row">
                             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                &copy; <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                                &copy; <a className="border-bottom" href="#">SmartLearn</a>, All Right Reserved.
 
 
-                                Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                                Designed By <a className="border-bottom" href="">JithinJose</a>
                             </div>
                             <div className="col-md-6 text-center text-md-end">
                                 <div className="footer-menu">
